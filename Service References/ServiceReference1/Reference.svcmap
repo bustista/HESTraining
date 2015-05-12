@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="02a50d4b-cb13-4510-9ef9-2330d414830f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://svrappdev03/ceus-wcf/ceusservice.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CeusService.xsd" MetadataType="Schema" ID="7ecd61a6-df49-48da-9f53-b22a505adbe1" SourceId="1" SourceUrl="http://svrappdev03/CEUS-WCF/CeusService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CeusService.disco" MetadataType="Disco" ID="98280428-7059-495d-a53e-ababf77bfce9" SourceId="1" SourceUrl="http://svrappdev03/CEUS-WCF/CeusService.svc?disco" />
+    <MetadataFile FileName="CeusService.wsdl" MetadataType="Wsdl" ID="5fd04d38-2a3b-4052-885c-ad3dfe350f8d" SourceId="1" SourceUrl="http://svrappdev03/CEUS-WCF/CeusService.svc?wsdl" />
+    <MetadataFile FileName="CeusService1.xsd" MetadataType="Schema" ID="040c741b-b881-450a-b5e1-a4e3ed662ae1" SourceId="1" SourceUrl="http://svrappdev03/CEUS-WCF/CeusService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CeusService2.xsd" MetadataType="Schema" ID="cb0b5199-ba7a-47c9-abc2-b7148543bbab" SourceId="1" SourceUrl="http://svrappdev03/CEUS-WCF/CeusService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

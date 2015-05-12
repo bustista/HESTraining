@@ -1,0 +1,122 @@
+﻿@model IEnumerable<HESTraining.Models.MenuViewModel>
+@using Microsoft.AspNet.Identity
+<script>
+
+    $("<div>Text added to menu</div>")
+        .css({
+            "float": "right",
+            "padding-right": "8px",
+            "padding-top": "8px"
+        })
+        .appendTo("#menu");
+
+</script>
+<style>
+    .k-widget {
+        border: none;
+    }
+
+    .k-menu {
+        Height: 100%;
+        background-color: RGB(64,64,64);
+        font-family: 'Segoe UI Light';
+        Font-Size: 22px;
+        color: White;
+        vertical-align: middle;
+        background-image: none; /* remove gradient */
+    }
+        /*.k-header{
+        background-color: RGB(64,64,64);
+        color: White;
+    }*/
+
+        .k-menu .k-item {
+            background-color: RGB(64,64,64);
+            /*color: white;*/
+        }
+
+            .k-menu .k-item:hover {
+                background-color: RGB(96,96,96);
+                color: white;
+            }
+             .k-menu .k-item .k-state-selected {
+            background-color: RGB(96,96,96);
+            /*color: white;*/
+        }
+    /* header item has child or item cannot click */
+    .k-link {
+        color: white;
+        background-image: none; /* remove gradient */
+    }
+
+        .k-link:hover {
+            background-color: RGB(96,96,96);
+            color: white;
+            background-image: none; /* remove gradient */
+        }
+    /* header item can click and no child */
+    .k-menu .k-item a {
+        background-image: none;
+        background-color: RGB(64,64,64);
+        color: white;
+    }
+
+        .k-menu .k-item a:hover {
+            background-image: none;
+            background-color: RGB(96,96,96);
+        }
+
+        .k-menu .k-state-hover>.k-state-active{background-color:RGB(96,96,96);}
+
+        .k-menu .k-state-active{background-color:RGB(96,96,96);}
+</style>
+
+@(Html.Kendo().Menu()
+  .Name("menu")
+  //.OpenOnClick(true)
+        //.HtmlAttributes(new { style = "background-color: RGB(64,64,64);" })
+  .Items(items =>
+  {
+      items.Add().Text("🎓").Enabled(true).HtmlAttributes(new { style = "background-color: RGB(255,51,0)!importent;font-family: Segoe UI Symbol;" }).Action("Index", "Home");
+      items.Add().Text("HES Training Record System").Enabled(true).HtmlAttributes(new { style = "color:white;font-weight: normal;" }).Action("Index", "Home");
+      foreach (var Menu in Model.Where(m => m.ParentMenuID == 0))
+      {
+          if (Menu.ParentMenuID == 0)
+          {
+              var hasAccessible = false;
+              items.Add()
+              .Text(Menu.MenuName).HtmlAttributes(new { style = "color:white;font-weight: normal;" }).Action(Menu.Action, Menu.Controller)
+              .Items(children =>
+                {
+                    foreach (var ChildMenu in Model.Where(m => m.ParentMenuID == Menu.MenuID))
+                    {
+                        children.Add().Text(ChildMenu.MenuName).HtmlAttributes(new { style = "color:white;font-weight: normal;" }).Action(ChildMenu.Action, ChildMenu.Controller);
+                        hasAccessible = true;
+                    }
+                })
+                .Visible(hasAccessible);
+
+          }
+      }
+      if (User.Identity.IsAuthenticated)
+      {
+          if (User.Identity.Name != "")
+          {
+              var fullname = @Html.Action("GetUserProfile", "Account");
+              items.Add().Text(fullname.ToString() + " 👤").Enabled(true).HtmlAttributes(new { @class = "pull-right", style = "font-family: Segoe UI Symbol!important;" })
+              .Items(children =>
+              {
+                  children.Add().Text("Logout").Enabled(true).HtmlAttributes(new { @class = "pull-right" }).Action("LogOff", "Account");
+              }).HtmlAttributes(new { @class = "pull-right" });
+          }
+      }
+      else
+      {
+          items.Add().Text("Login").Enabled(true).HtmlAttributes(new { @class = "pull-right" }).Action("Login", "Account");
+      }
+
+      //items.Add().Text(User.Identity.Name.ToString()).Enabled(true).HtmlAttributes(new { @class = "pull-right" });
+
+
+  })
+)

@@ -1,0 +1,8 @@
+﻿@model HESTraining.Models.TrainingCourse
+
+@(Html.Kendo().DropDownList()
+        .Name("TrainingCourse")
+        .DataValueField("TrainingCourseID")
+        .DataTextField("CourseNameEn")
+        .BindTo((System.Collections.IEnumerable)ViewBag.courses)
+)

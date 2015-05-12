@@ -1,0 +1,7 @@
+﻿@model HESTraining.Models.Employee
+
+@(Html.Kendo().DropDownListFor(m => m)
+        .DataValueField("Value")
+        .DataTextField("Text")
+                          .BindTo(ViewBag.monthsse as SelectList)
+)

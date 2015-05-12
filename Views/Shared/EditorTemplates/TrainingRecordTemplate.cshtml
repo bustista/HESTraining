@@ -1,0 +1,55 @@
+﻿@model HESTraining.Models.TrainingRecord
+
+@(Html.HiddenFor(m => m.EmployeeID))
+
+
+<div class="k-edit-label">
+    @(Html.LabelFor(model => model.TrainingCourse))
+</div>
+
+<div data-container-for="User" class="k-edit-field">
+    @(Html.Kendo().DropDownList()
+            .Name("User")
+            .DataTextField("LoginName")
+        .DataValueField("EmployeeID")
+        .BindTo((IEnumerable<HESTraining.Models.Employee>)ViewData["employees"]))
+</div>
+
+
+@*<div data-container-for="OrderDate" class="k-edit-field">
+    @(Html.Kendo().DateTimePickerFor(m => m.OrderDate))
+</div>
+
+<div class="k-edit-label">
+    @(Html.LabelFor(model => model.OrderDescription))
+</div>
+<div data-container-for="OrderDescription" class="k-edit-field">
+    @(Html.Kendo().DropDownListFor(m => m.OrderDescription)
+    .DataSource(d => d.Read("OrderDescription_Read", "Home")))
+</div>
+
+<div class="k-edit-label">
+    @(Html.LabelFor(model => model.Employees))
+</div>
+<div data-container-for="Employees" class="k-edit-field">
+    @(Html.Kendo().MultiSelectFor(m => m.Employees)
+        .DataTextField("Name")
+        .DataValueField("EmployeeID")
+        .BindTo((IEnumerable<ForeignKeyColumnDemo.Models.Employee>)ViewData["employees"]))
+</div>
+
+<div class="k-edit-label">
+    @(Html.LabelFor(model => model.OrderTotal))
+</div>
+<div data-container-for="OrderTotal" class="k-edit-field">
+    @(Html.Kendo().CurrencyTextBoxFor(m => m.OrderTotal)
+      .HtmlAttributes(new { style = "width:100%" })
+      .Min(0))
+</div>
+
+<div class="k-edit-label">
+    @(Html.LabelFor(model => model.IsCompleted))
+</div>
+<div data-container-for="IsCompleted" class="k-edit-field">
+    @(Html.CheckBoxFor(m => m.IsCompleted))
+</div>*@

@@ -1,0 +1,120 @@
+﻿@model IEnumerable<HESTraining.Models.CompanyViewModel>
+
+@{
+    ViewBag.Title = "Company";
+}
+<br /><br />
+<div class="frameset-border">
+    <div class="row">
+        <div class="col-sm-2">
+            @Html.Label("Company Code")
+        </div>
+        <div class="col-sm-2">
+            @Html.Kendo().TextBox().Name("CompanyCode")
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-sm-2">
+            @Html.Label("Company Name")
+        </div>
+        <div class="col-sm-2">
+            @Html.Kendo().TextBox().Name("CompanyName")
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-3">
+            <button type="button" id="btnSearch" class="k-button">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"> Search</span>
+            </button>
+            <button type="button" id="btnNew" class="k-button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"> New</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+@(Html.Kendo().Grid<HESTraining.Models.CompanyViewModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.CompanyID).Title("Company Code").Visible(true);
+        columns.Bound(p => p.CompanyName).Title("Company Name");
+        columns.Command(command => { command.Edit(); command.Destroy(); });
+    })
+        //.ToolBar(toolbar => toolbar.Create())
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+        .Pageable(pager => { pager.PageSizes(true); })
+    .Sortable()
+        //.Filterable()
+    .Scrollable()
+        //.AutoBind(false)
+    .HtmlAttributes(new { style = "height:430px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(10)
+                        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.CompanyID))
+                .Create(update => update.Action("Create", "Company"))
+                        .Read(read => read.Action("Read", "Company"))
+                        .Update(update => update.Action("Update", "Company"))
+                                .Destroy(update => update.Action("Destroy", "Company"))
+    )
+)
+@(Html.Kendo().Window()
+    .Name("alertWindow")
+    .Title("Status Message from Server")
+    .Draggable()
+    .Resizable()
+    .Width(400)
+    .Height(200)
+    .Modal(true)
+    .Visible(false)
+)
+<script type="text/javascript">
+    $('#btnNew').on('click', function () {
+        $("#grid").data("kendoGrid").addRow();
+    });
+    function showAlertWindow(message) {
+        var alertWindow = $('#alertWindow').data('kendoWindow');
+        alertWindow.content(message);
+        alertWindow.refresh();
+        alertWindow.center();
+        alertWindow.open();
+    }
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            showAlertWindow(message);
+        }
+    }
+    $("#btnSearch").click(function () {
+        $filter = new Array();
+
+        $comCode = $("#CompanyCode").val();
+        $comName = $("#CompanyName").val();
+
+        if ($comCode) {
+            $filter.push({ field: "CompanyID", operator: "eq", value: $comCode });
+        }
+        if ($comName) {
+            $filter.push({ field: "CompanyName", operator: "contains", value: $comName });
+        }
+
+
+        var grid = $("#grid").data("kendoGrid");
+
+        grid.dataSource.filter($filter);
+        grid.dataSource.read();
+    });
+</script>

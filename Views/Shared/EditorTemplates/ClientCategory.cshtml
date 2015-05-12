@@ -1,0 +1,9 @@
+﻿@model  HESTraining.Models.CategoryViewModel
+
+@(Html.Kendo().DropDownList()
+        .Name("CategoryID")
+        .DataValueField("CategoryID")
+        .DataTextField("CategoryName")
+        .BindTo((System.Collections.IEnumerable)ViewBag.categories)
+            .HtmlAttributes(new { data_value_primitive = true })
+)

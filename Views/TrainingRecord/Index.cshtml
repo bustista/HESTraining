@@ -1,0 +1,449 @@
+﻿@model HESTraining.Models.TrainingRecordViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .k-pdf-export .k-grid-toolbar,
+    .k-pdf-export .k-pager-wrap,
+    .k-pdf-export .k-button {
+        display: none;
+    }
+
+    .k-grid {
+        font-family: "DejaVu Sans", "Arial", sans-serif;
+    }
+
+    .k-button {
+        font-family: "DejaVu Sans", "Arial", sans-serif !important;
+    }
+</style>
+<br /><br />
+@*@(Html.Kendo().PanelBar()
+            .Name("panelbar")
+            .Items(p =>
+            {
+                p.Add().Text("Criteria")
+                    .Content(@<div style="padding:10px 0 10px 10px;">*@
+<div class="frameset-border">
+
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.Employee, "Name")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().TextBoxFor(m => m.FirstNameEn))
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.EmpCode, "Employee Code")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().TextBoxFor(m => m.EmpCode))
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.CompanyName, "Company")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().DropDownListFor(m => m.CompanyName)
+                    .OptionLabel("All")
+                    .Value("")
+                            .DataValueField("CompanyName")
+                    .DataTextField("CompanyName")
+                    .BindTo((System.Collections.IEnumerable)ViewBag.companies)
+                                    .HtmlAttributes(new { })
+            )
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.DepartmentName, "Department")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().DropDownListFor(m => m.DepartmentName)
+                    .OptionLabel("All")
+                    .Value("")
+                            .DataValueField("DepartmentName")
+                    .DataTextField("DepartmentName")
+                    .BindTo((System.Collections.IEnumerable)ViewBag.departments)
+                                    .HtmlAttributes(new { })
+            )
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.TrainingCourse, "Training Course Title")
+        </div>
+        <div class="col-md-6">
+            @(Html.Kendo().DropDownListFor(m => m.TrainingCourse)
+                    .OptionLabel("All")
+                    .Value("")
+                    .DataValueField("TrainingCourseID")
+                    .DataTextField("CourseNameEn")
+                            .BindTo((System.Collections.IEnumerable)ViewBag.courses)
+                            .HtmlAttributes(new { style = "width:450px" })
+            )
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.TrainingStartDate, "Period from")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().DatePicker().Name("DateFrom").Format("MM/dd/yyyy").ParseFormats(new string[] { "dd/MM/yyyy" }))
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.TrainingEndDate, "Period end")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().DatePicker().Name("DateTo").Format("MM/dd/yyyy").ParseFormats(new string[] { "dd/MM/yyyy" }))
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.Project, "Project Name")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().DropDownListFor(m => m.Project)
+                    .OptionLabel("All")
+                    .Value("")
+                    .DataValueField("ProjectID")
+                    .DataTextField("ProjectName")
+                            .BindTo((System.Collections.IEnumerable)ViewBag.projects)
+                            .HtmlAttributes(new { })
+            )
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.CertificateHESInduction, "Certificate")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().TextBoxFor(m => m.CertificateHESInduction))
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.MonthOfCompletionSSE, "Month of Completion SSE")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().DropDownList()
+                    .Name("ddlMonth")
+                    .OptionLabel("All")
+                    .Value("")
+                    .BindTo(ViewBag.monthsse as SelectList)
+                             .DataValueField("Text")
+                                    .DataTextField("Value")
+                    //.Events(e =>
+                    //    {
+                    //        e.Change("lert");
+                    //    })
+            )
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.YearOfCompletionSSE, "Year of Complete SSE")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().DropDownList()
+                    .Name("ddlYear")
+                    .OptionLabel("All")
+                    .Value("")
+                            .BindTo(ViewBag.yearsse)
+                            .DataValueField("Text")
+                            .DataTextField("Value")
+            )
+        </div>
+    </div>
+
+
+    @*</div>
+                            );
+                    })
+        )*@
+
+
+    <div class="row top-buffer">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-4">
+            <button type="button" id="btnSearch" class="k-button">
+                <span class="glyphicon glyphicon-search"> Search</span>
+            </button>
+            @{
+                if ((User.IsInRole("HES Admin") || User.IsInRole("Admin")))
+                {
+                    <button type="button" id="btnNew" class="k-button">
+                        <span class="glyphicon glyphicon-plus"> New</span>
+                    </button>
+                    @*<button type="button" id="btnUpload" class="k-button">
+                            <span class="glyphicon glyphicon-upload"> Upload</span>
+                        </button>*@
+                }
+            }
+
+        </div>
+    </div>
+
+</div>
+
+@(Html.Kendo().Grid<HESTraining.Models.TrainingRecordViewModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        //columns.Bound(r => r.TrainingRecordID).Title("id");
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(170);
+        columns.Bound(r => r.EmpCode).Title("EmpCode").Width(100).Visible(true);
+        columns.Bound(r => r.CompanyName).Title("Company").Visible(true).Width(100);
+        columns.Bound(r => r.TitleEn).Title("Title En").Visible(true).Width(70);
+        columns.Bound(r => r.FirstNameEn).Title("First Name En").Visible(true).Width(120);
+        columns.Bound(r => r.LastNameEn).Title("Last Name En").Visible(true).Width(120);
+        columns.Bound(r => r.TitleTh).Title("Title Th").Visible(true).Width(70);
+        columns.Bound(r => r.FirstNameTh).Title("FirstName Th").Visible(true).Width(120);
+        columns.Bound(r => r.LastNameTh).Title("LastName Th").Visible(true).Width(120);
+        columns.Bound(r => r.CitizenID).Title("Citizen ID").Visible(true).Width(180);
+        //columns.Bound(r => r.DepartmentName).Title("Dept Name En").Visible(true).Width(200);
+        //columns.ForeignKey(r => r.DepartmentCode, (IEnumerable<HESTraining.Models.DepartmentViewModel>)ViewBag.departments, "DepartmentCode", "DepartmentName")
+        // .ClientTemplate("#:DepartmentCode#:#:DepartmentName#")
+        // .EditorTemplateName("GridForeignKey").Title("Dept Name En").Visible(true).Width(250);
+        columns.Bound(r => r.DepartmentCode)
+               .ClientTemplate("#:DepartmentCode#:#:DepartmentName#")
+               .Title("Dept Name En")
+               .Width(250).Visible(true);
+        columns.Bound(r => r.PositionNameEn).Title("Position En").Visible(true).Width(150);
+        columns.Bound(r => r.PositionNameTh).Title("Position Th").Visible(true).Width(150);
+        columns.ForeignKey(r => r.TrainingCourseID, (IEnumerable<HESTraining.Models.TrainingCourseViewModel>)ViewBag.courses, "TrainingCourseID", "CourseNameEn").Title("Course Name").Visible(true).Width(250);
+        columns.Bound(r => r.TrainingCategoryType).Title("Category").Visible(true).Width(200);
+        columns.Bound(r => r.Trainer).Title("Trainer").Width(100);
+        columns.Bound(r => r.Organized).Title("Organized").Visible(true).Width(100);
+        columns.Bound(r => r.TrainingStartDate).Title("Start Date").Format("{0:dd/MM/yyyy}").Visible(true).Width(100).EditorTemplateName("Date");
+        columns.Bound(r => r.TrainingEndDate).Title("End Date").Format("{0:dd/MM/yyyy}").Visible(true).Width(100);
+        columns.Bound(r => r.Duration)
+               .ClientTemplate("#=Duration# #=DurationUnit#")
+               .Width(100)
+               .HtmlAttributes(new { style = "text-align:center;" })
+               .HeaderHtmlAttributes(new { style = "text-align:center;" }).Visible(true);
+        columns.Bound(r => r.Venue).Title("Venue").Visible(true).Width(100);
+        columns.Bound(r => r.CertificateHESInduction).Title("Certificate").Visible(true).Width(100);
+        columns.ForeignKey(r => r.ProjectID, (IEnumerable<HESTraining.Models.ProjectViewModel>)ViewBag.projects, "ProjectID", "ProjectName").Title("Project").Visible(true).Width(100);
+        columns.Bound(r => r.FollowUpSSE).Title("Follow up SSE").Visible(true).Width(120);
+        columns.Bound(r => r.MonthOfCompletionSSE).Title("Month").Width(100);
+        columns.Bound(r => r.YearOfCompletionSSE).Title("Year").Width(80);
+        columns.ForeignKey(r => r.EmployeeID, (IEnumerable<HESTraining.Models.EmployeeViewModel>)ViewBag.employees, "EmployeeID", "FirstNameEn").Visible(false).Width(100);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(170);
+    })
+                            .ToolBar(toolbar => { toolbar.Excel(); toolbar.Pdf(); })
+                                    .Events(e => e.ExcelExport("excelExport"))
+        .Editable(editable => editable.Mode(GridEditMode.PopUp))
+            .Pageable(pager => { pager.PageSizes(true); })
+                .Resizable(resize => resize.Columns(true))
+        .Sortable()
+        .AutoBind(false)
+        .Scrollable()
+        .HtmlAttributes(new { style = "height:400px;" })
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(10)
+        .Events(events => events.Error("error_handler").Sync("sync_handler"))
+        .Model(model => model.Id(r => r.TrainingRecordID))
+            //.Model(model =>
+            //{
+            // model.Id(r => r.TrainingRecordID);
+            //model.Field(r => r.Employee.EmpCode).Editable(false);
+            //model.Field(r => r.TrainingCourseID).DefaultValue(
+            //        ViewBag.defaultCourse as HESTraining.Models.TrainingCourse);
+            //})
+                .Create(update => update.Action("Create", "TrainingRecord"))
+            .Read(read => read.Action("Read", "TrainingRecord"))
+                .Update(update => update.Action("Update", "TrainingRecord"))
+                .Destroy(update => update.Action("Destroy", "TrainingRecord"))
+    )
+)
+
+@(Html.Kendo().Window()
+    .Name("popUploadEmployee")
+    .Title("Upload Employee")
+    .Draggable()
+    .Content(@<text>
+        <div>
+            <a href="~/Content/Template/TrainingRecordUploadTemplate.xlsx">Upload Record not avaliable</a>
+            <form method="post" action='@Url.Action("Upload")' style="width:100%">
+                <div class="demo-section">
+                    @(Html.Kendo().Upload()
+                .Name("files")
+                .Multiple(false)
+                            //.Events(e => e.Upload("CheckFileName"))
+                    )
+
+                    <p>
+                        <input type="submit" value="Upload" class="k-button" />
+                    </p>
+                </div>
+            </form>
+        </div>
+        <script>
+            function CheckFileName() {
+                var fileUpload = e.files // document.getElementById("files").value  $('#files').data('kendoUpload');
+                //debugger;
+                if (fileUpload == 0) {
+                    alert("Browse to upload a valid File with xlsx extension");
+                    return false;
+                }
+                else if (fileUpload.split(".")[1].toUpperCase() == "XLSX")
+                    return true;
+                else {
+                    alert("File with " + fileUpload.split(".")[1] + " is invalid. Upload a validfile with xlsx extensions");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </text>)
+    .Resizable()
+    .Width(400)
+    .Height(200)
+    .Modal(true)
+    .Visible(false)
+)
+@*<div class="CommandBarMainContent">
+        <div class="PrimaryCommandItemCommandBarMainContent">
+             New
+        </div>
+        <div class="PrimaryCommandItemCommandBarMainContent">
+            📤 Upload
+        </div>
+
+        <div class="SecondaryCommandItemCommandBarMainContent">
+            📥 Export XLS
+        </div>
+        <div class="SecondaryCommandItemCommandBarMainContent">
+            📥 Export PDF
+        </div>
+    </div>*@
+
+@(Html.Kendo().Window()
+    .Name("alertWindow")
+    .Title("Status Message from Server")
+    .Draggable()
+    .Resizable()
+    .Width(400)
+    .Height(200)
+    .Modal(true)
+    .Visible(false)
+)
+
+<script type="text/javascript">
+    $('#btnUpload').on('click', function () {
+        var popUpload = $('#popUploadEmployee').data('kendoWindow');
+        popUpload.refresh();
+        popUpload.center();
+        popUpload.open();
+
+    });
+    function excelExport(e) {
+        var sheet = e.workbook.sheets[0];
+
+        var template = kendo.template(this.columns[10].template);
+        var template2 = kendo.template(this.columns[19].template);
+        var data = this.dataSource.view();
+
+        for (var i = 0; i < data.length; i++) {
+            sheet.rows[i + 1].cells[9].value = template(data[i]);
+            sheet.rows[i + 1].cells[18].value = template2(data[i]);
+        }
+    }
+    $('#btnNew').on('click', function () {
+        $("#grid").data("kendoGrid").addRow();
+    });
+    $('#btnExport').on('click', function () {
+        $("#grid").data("kendoGrid").saveAsExcel();
+    });
+    function lert() {
+        alert(kendo.toString(this.value(), 'd'));
+    }
+    $(function () {
+        $("#DepartmentName").data("kendoDropDownList").list.width(500);
+        //$("#DateFrom").kendoDatePicker({
+        //    parseFormats: ["dd/MM/yyyy"],
+        //});
+    });
+    function sync_handler(e) {
+        this.read();
+    }
+    function showAlertWindow(message) {
+        var alertWindow = $('#alertWindow').data('kendoWindow');
+        alertWindow.content(message);
+        alertWindow.refresh();
+        alertWindow.center();
+        alertWindow.open();
+    }
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            showAlertWindow(message);
+        }
+    }
+
+    $("#btnSearch").click(function () {
+        $filter = new Array();
+
+        $employee = $("#FirstNameEn").val();
+        $empCode = $("#EmpCode").val();
+        $company = $("#CompanyName").val();
+        $department = $("#DepartmentName").val();
+        $course = $("#TrainingCourse").val();
+        $datefrom = $("#DateFrom").val();
+        $dateto = $("#DateTo").val();
+        $project = $("#Project").val();
+        $cert = $("#CertificateHESInduction").val();
+        $monthsse = $("#ddlMonth").val();
+        $yearsse = $("#ddlYear").val();
+
+
+        if ($employee) {
+            $filter.push({ field: "FirstNameEn", operator: "contains", value: $employee });
+        }
+        if ($empCode) {
+            $filter.push({ field: "EmpCode", operator: "contains", value: $empCode });
+        }
+        if ($company) {
+            $filter.push({ field: "CompanyName", operator: "eq", value: $company });
+        }
+        if ($department) {
+            $filter.push({ field: "DepartmentName", operator: "eq", value: $department });
+        }
+        if ($course) {
+            $filter.push({ field: "TrainingCourseID", operator: "eq", value: $course });
+        }
+        if ($datefrom) {
+            $filter.push({ field: "TrainingStartDate", operator: "gte", value: $datefrom });
+        }
+        if ($dateto) {
+            $filter.push({ field: "TrainingEndDate", operator: "lte", value: $dateto });
+        }
+        if ($project) {
+            $filter.push({ field: "ProjectID", operator: "eq", value: $project });
+        }
+        if ($cert) {
+            $filter.push({ field: "CertificateHESInduction", operator: "contains", value: $cert });
+        }
+        if ($monthsse) {
+            $filter.push({ field: "MonthOfCompletionSSE", operator: "eq", value: $monthsse });
+        }
+        if ($yearsse) {
+            $filter.push({ field: "YearOfCompletionSSE", operator: "eq", value: $yearsse });
+        }
+
+        var grid = $("#grid").data("kendoGrid");
+
+        grid.dataSource.filter($filter);
+        grid.dataSource.read();
+    });
+</script>

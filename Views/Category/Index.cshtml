@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HESTraining.Models.CategoryViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@(Html.Kendo().Grid<HESTraining.Models.CategoryViewModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.CategoryName).Title("Category Name");
+        columns.Command(command => { command.Edit(); command.Destroy(); });
+    })
+    .ToolBar(toolbar => toolbar.Create())
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:430px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.CategoryID))
+                .Create(update => update.Action("Create", "Category"))
+                    .Read(read => read.Action("Read", "Category"))
+                    .Update(update => update.Action("Update", "Category"))
+                            .Destroy(update => update.Action("Destroy", "Category"))
+    )
+)
+@(Html.Kendo().Window()
+    .Name("alertWindow")
+    .Title("Status Message from Server")
+    .Draggable()
+    .Resizable()
+    .Width(400)
+    .Height(200)
+    .Modal(true)
+    .Visible(false)
+)
+<script type="text/javascript">
+ 
+    function showAlertWindow(message) {
+        var alertWindow = $('#alertWindow').data('kendoWindow');
+        alertWindow.content(message);
+        alertWindow.refresh();
+        alertWindow.center();
+        alertWindow.open();
+    }
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
+
+

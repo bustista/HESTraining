@@ -1,0 +1,18 @@
+﻿@model  HESTraining.Models.DepartmentViewModel
+            @*<script>
+                $(function () {
+                    $("#DepartmentName").data("kendoDropDownList").list.width(100);
+
+                });
+            </script>*@
+
+@(Html.Kendo().DropDownList()
+        .Name("DepartmentCode")
+
+        .DataValueField("DepartmentCode")
+        .DataTextField("DepartmentName")
+                        .Template("#:data.DepartmentCode#:#:data.DepartmentName#")
+                        //.ValueTemplate("#:data.DepartmentCode# : #:data.DepartmentName#")
+        .BindTo((System.Collections.IEnumerable)ViewBag.departments)
+            .HtmlAttributes(new { data_value_primitive = true })
+)

@@ -1,0 +1,167 @@
+﻿@model HESTraining.Models.TrainingCourseViewModel
+
+@{
+    ViewBag.Title = "Training Course";
+}
+
+<br /><br />
+
+<div class="frameset-border">
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.CourseNameEn, new { })
+        </div>
+        <div class="col-md-4">
+            @Html.Kendo().TextBoxFor(m => m.CourseNameEn).HtmlAttributes(new { })
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.CourseNameTh, new { })
+        </div>
+        <div class="col-md-4">
+            @Html.Kendo().TextBoxFor(m => m.CourseNameTh).HtmlAttributes(new { })
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.Category, new { })
+        </div>
+        <div class="col-md-4">
+            @(Html.Kendo().DropDownListFor(m => m.Category)
+            .OptionLabel("All")
+            .Value("")
+            .DataValueField("CategoryID")
+            .DataTextField("CategoryName")
+            .BindTo((System.Collections.IEnumerable)ViewBag.categories)
+                    .HtmlAttributes(new { style = "width:300px;" })
+            )
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-4">
+            <button type="button" id="btnSearch" class="k-button">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"> Search</span>
+            </button>
+            <button type="button" id="btnNew" class="k-button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"> New</span>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+
+    @(Html.Kendo().Grid<HESTraining.Models.TrainingCourseViewModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.CourseNameEn).Title("Training Course_En").Width(300);
+        columns.Bound(c => c.CourseNameTh).Title("Training Course_Th").Width(300);
+        columns.Bound(c => c.Duration)
+            .ClientTemplate("#=Duration# #=DurationUnit#")
+            .Width(100)
+            .HtmlAttributes(new { style = "text-align:center;" })
+            .HeaderHtmlAttributes(new { style = "text-align:center;" });
+        columns.ForeignKey(c => c.CategoryID, (IEnumerable<HESTraining.Models.CategoryViewModel>)ViewBag.categories, "CategoryID", "CategoryName").Title("Training Category Type").Width(240);
+        //columns.Bound(e => e.CategoryID).EditorTemplateName("ClientCategory").Title("Category").ClientTemplate("#:CategoryName#");
+        //columns.Bound(c => c.Category.CategoryName).Title("CatName").Width(200);
+        columns.Command(command => { command.Edit(); command.Destroy().Text("Remove"); }).Width(180);
+    })
+            //.ToolBar(toolbar => toolbar.Create().Text("New"))
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .AutoBind(false)
+        .Pageable(pager => { pager.PageSizes(true); })
+    .Sortable()
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:430px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(10)
+            .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(c => c.TrainingCourseID))
+        .Create(update => update.Action("Create", "TrainingCourse"))
+        .Read(read => read.Action("Read", "TrainingCourse"))
+        .Update(update => update.Action("Update", "TrainingCourse"))
+        .Destroy(update => update.Action("Destroy", "TrainingCourse"))
+    )
+    )
+
+    @(Html.Kendo().Window()
+    .Name("alertWindow")
+    .Title("Status Message from Server")
+    .Draggable()
+    .Resizable()
+    .Width(400)
+    .Height(200)
+    .Modal(true)
+    .Visible(false)
+    )
+    <script type="text/javascript">
+        $('#btnNew').on('click', function () {
+            $("#grid").data("kendoGrid").addRow();
+        });
+
+        function showAlertWindow(message) {
+            var alertWindow = $('#alertWindow').data('kendoWindow');
+            alertWindow.content(message);
+            alertWindow.refresh();
+            alertWindow.center();
+            alertWindow.open();
+        }
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                showAlertWindow(message);
+            }
+        }
+        function onError(e, status) {
+            if (e.status = "customerror") {
+                alert(e.errors);
+            }
+            else {
+                alert("Generic server error.");
+            }
+        }
+
+        $("#btnSearch").click(function () {
+            $filter = new Array();
+
+            $courseNameEn = $("#CourseNameEn").val();
+            $courseNameTh = $("#CourseNameTh").val();
+            $category = $("#Category").val();
+
+            if ($courseNameEn) {
+                $filter.push({ field: "CourseNameEn", operator: "contains", value: $courseNameEn });
+            }
+
+            if ($courseNameTh) {
+                $filter.push({ field: "CourseNameTh", operator: "contains", value: $courseNameTh });
+            }
+
+            if ($category) {
+                $filter.push({ field: "CategoryID", operator: "eq", value: $category });
+            }
+
+            var grid = $("#grid").data("kendoGrid");
+
+            grid.dataSource.filter($filter);
+            grid.dataSource.read();
+        });
+
+
+    </script>
+

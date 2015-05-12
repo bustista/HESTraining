@@ -1,0 +1,94 @@
+﻿@*@(Html.Kendo().Menu()
+              .Name("Menu")
+              .HtmlAttributes(new { style = "font-size:1em; width:100%;" })
+              .Items(items =>
+              {
+                  items.Add().Text("HOME").Action("Index", "Home");
+                  items.Add()
+                      .Text("HES Admin")
+                      .Items(children =>
+                       {
+                           children.Add().Text("HES Training Records").Action("Index", "TrainingRecord");
+                           children.Add().Text("HES Training Courses").Action("Index", "TrainingCourse");
+                           children.Add().Text("HES Maintain People").Action("Index", "Employee");
+                           children.Add().Text("HES Maintain Company").Action("Index", "Company");
+                       });
+                  items.Add()
+                      .Text("All Staff")
+                      .Items(children =>
+                      {
+                          children.Add().Text("HES Training Report").Action("Index", "TrainingReport");
+                      });
+                  items.Add()
+                      .Text("HR")
+                      .Items(children =>
+                      {
+                          children.Add().Text("Transfer to Oracle").Action("Index", "Transfer");
+                      });
+                  items.Add()
+                      .Text("System Admin")
+                      .Items(children =>
+                       {
+                           children.Add().Text("Department").Action("Index", "Department");
+                           //children.Add().Text("Company").Action("Index", "Company");
+                           children.Add().Text("Training Category").Action("Index", "Category");
+                       });
+                  items.Add().Text("Logout").Enabled(false).HtmlAttributes(new { @class = "pull-right" });
+                  items.Add().Text(User.Identity.Name).Enabled(false).HtmlAttributes(new { @class = "pull-right" });
+
+              })
+    )*@
+
+
+
+
+
+
+
+@(Html.Kendo().Menu()
+  .Name("menu")
+          .BindTo("Web", (item, value) =>
+          {
+              item.Enabled = false;
+          })
+          .Render());
+  @*//.Items(items =>
+  //{
+  //    items.Add().Text("Home").Enabled(true).HtmlAttributes(new { style = "color:black;font-weight: normal;" }).Action("Index", "Home");
+  //    foreach (var Menu in Model.Where(m => m.ParentMenuID == 0))
+  //    {
+  //        if (Menu.ParentMenuID == 0)
+  //        {
+  //            var hasAccessible = false;
+  //            items.Add()
+  //            .Text(Menu.MenuName).HtmlAttributes(new { style = "color:black;font-weight: normal;" }).Action(Menu.Action, Menu.Controller)
+  //            .Items(children =>
+  //              {
+  //                  foreach (var ChildMenu in Model.Where(m => m.ParentMenuID == Menu.MenuID))
+  //                  {
+  //                      children.Add().Text(ChildMenu.MenuName).HtmlAttributes(new { style = "color:black;font-weight: normal;" }).Action(ChildMenu.Action, ChildMenu.Controller);
+  //                      hasAccessible = true;
+  //                  }
+  //              })
+  //              .Visible(hasAccessible);
+
+  //        }
+  //    }
+  //    if (User.Identity.IsAuthenticated)
+  //    {
+  //        items.Add().Text("Logout").Enabled(true).HtmlAttributes(new { @class = "pull-right" }).Action("LogOff", "Account");
+  //    }
+  //    else
+  //    {
+  //        items.Add().Text("Login").Enabled(true).HtmlAttributes(new { @class = "pull-right" }).Action("Login", "Account");
+  //    }
+  //    if (User.Identity.Name != "")
+  //    {
+  //        var fullname = @Html.Action("GetUserProfile", "Account");
+  //        items.Add().Text(fullname.ToString()).Enabled(true).HtmlAttributes(new { @class = "pull-right" });
+  //    }
+  //    //items.Add().Text(User.Identity.Name.ToString()).Enabled(true).HtmlAttributes(new { @class = "pull-right" });
+
+
+  //})
+  )*@

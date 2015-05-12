@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap>
+  <siteMapNode title="Home" controller="Home" action="Index">
+    <siteMapNode title="HES Admin">
+      <siteMapNode controller="grid" action="index" title="First Look (Razor)"/>
+    </siteMapNode>
+    <siteMapNode title="Menu">
+      <siteMapNode controller="menu" action="index" title="First Look (Razor)"/>
+      <siteMapNode controller="menu" action="index" title="First Look (ASPX)"/>
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

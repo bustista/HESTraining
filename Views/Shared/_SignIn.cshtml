@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+
+<html class="LoginHTML">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - CEUS</title>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/kendo.modernizr.custom.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/login-remember.js"></script>
+    <link href="~/Content/CUELStyles.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var username = $.cookie("txtUserName");
+            var password = $.cookie("txtPassword");
+            var remember = $.cookie("remember");
+            if (username != undefined) {
+                $('#txtUserName').val(username);
+
+            }
+            if (password != undefined) {
+                $('#txtPassword').val(password);
+
+            }
+
+            if (remember == 'checked') {
+                $('#c1').prop('checked', true);
+                __doPostBack('btLogin', '');
+            }
+
+            $('#btLogin').click(function () {
+                if ($('#c1').is(':checked')) {
+                    var email = $('#txtUserName').val();
+                    $.cookie("txtUserName", email, { expires: 365 });
+                    var pass = $('#txtPassword').val();
+                    $.cookie("txtPassword", pass, { expires: 365 });
+                    $.cookie("remember", 'checked', { expires: 365 });
+                } else {
+                    $.cookie("txtUserName", '', { expires: 365 });
+                    $.cookie("txtPassword", '', { expires: 365 });
+                    $.cookie("remember", '', { expires: 365 });
+                }
+
+            }
+
+            )
+
+            $(document)[0].oncontextmenu = function () { return false; }
+            $(document).mousedown(function (e) {
+                if (e.button == 2) {
+                    return false;
+                } else {
+                    return true;
+                }
+
+            });
+            $('input').keypress(function (e) {
+                if (e.which == 13) {
+                    jQuery(this).blur();
+                    jQuery('#btLogin').focus().click();
+                }
+            });
+
+        });
+
+
+    </script>
+
+</head>
+<body class="BodyLogin">
+
+    @*<form id="form1">*@
+        <form class="form-signin" action="@Url.Action("Login","Account")" method="post">
+
+            <div class="RightPanelMainContentCover">
+
+                <img class="LogoImageRightPanelMainContentCover" src="~/Images/15th_300dpi.png" style="width: 300.48px; height: 105.6px;" />
+
+                <div class="PrimaryBarRightPanelMainContentCover">
+                </div>
+                @RenderBody()
+                <p style="margin-top: 75px; margin-left: 50px; opacity: 1; font-family: Segoe UI Light; background-color: transparent; font-size: 28px; color: black; position: fixed;">Please sign in CUEL account.</p>
+                <div class="SecondaryBarRightPanelMainContentCover">
+                    <div class="TitleTextBoxMainContentUserName">
+                        <input type="text" id="txtUserName" name="UserName" autocomplete="off" class="TitleTextBoxMainContent" required="required" placeholder="USER NAME" />
+                    </div>
+                    <div class="TitleTextBoxMainContentPassword">
+                        <input type="password" id="txtPassword" name="Password" class="TitleTextBoxMainContent" required="required" placeholder="PASSWORD" />
+                    </div>
+                    <div class="SubtitleTextCaptionMainContent">
+                        <input type="checkbox" id="c1" /><span>Keep me signed in</span>
+                    </div>
+                    <div>
+                        <button id="btLogin" name="btLogin" class="TitleButtonMainContent">Sign in </button>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <footer class="FooterBarCover">
+                <div class="LoginCopyrightPrimaryFooterBar">
+                    CUEL IT Application.
+                </div>
+                <div class="LoginCopyrightSecondaryFooterBar">
+                    Copyright ©2015 - CUEL Limited
+                </div>
+
+            </footer>
+            <a href="#" class="overlay" id="MsgLogin"></a>
+            <div class="popup">
+                <p><span id="spMsg"></span></p>
+
+
+            </div>
+
+
+
+
+
+        </form>
+</body>
+</html>

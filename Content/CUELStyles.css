@@ -1,0 +1,809 @@
+﻿
+html {
+    background-color: #e2e2e2;
+}
+
+.AppBar {
+    width: 100%;
+    height: 48.96px;
+    background-color: RGB(64,64,64);
+    vertical-align: top;
+}
+
+.IconAppBar {
+    width: 77.76px;
+    height: 100%;
+    background-color: RGB(255,51,0);
+    /*font-family: 'Segoe UI Emoji';*/
+    font-size: 38px;
+    color: white;
+    float: left;
+    text-align: center;
+}
+
+
+.TitleAppBar {
+    height: 100%;
+    background-color: transparent;
+    font-family: 'Segoe UI Light';
+    font-size: 22px;
+    color: white;
+    float: left;
+    vertical-align: middle;
+    padding: 10px 0px 10px 0px;
+    margin: 0 10px 0 10px;
+}
+
+.MenuItemAppBar {
+    Height: 100%;
+    background-color: transparent;
+    font-family: 'Segoe UI Light';
+    Font-Size: 22px;
+    color: White;
+    float: left;
+    vertical-align: middle;
+    padding: 10px 10px 10px 10px;
+    margin: 0 5px 0 5px;
+}
+
+    .MenuItemAppBar:hover {
+        cursor: pointer;
+    }
+
+.MenuItemAppBarSelected {
+    Height: 100%;
+    font-family: 'Segoe UI Light';
+    Font-Size: 22px;
+    color: White;
+    float: left;
+    vertical-align: middle;
+    padding: 10px 10px 10px 10px;
+    margin: 0 5px 0 5px;
+    background-color: RGB(96,96,96);
+}
+
+
+.MenuSeparatorAppBar {
+    height: 100%;
+    background-color: transparent;
+    font-family: Segoe UI Light;
+    font-size: 22px;
+    color: white;
+    float: left;
+    vertical-align: middle;
+    padding: 10px 0px 10px 0px;
+}
+
+.MenuItemAppBar:hover {
+    Height: 100%;
+    background-color: RGB(96,96,96);
+    font-family: Segoe UI Light;
+    font-size: 22px;
+    color: white;
+    float: left;
+    vertical-align: middle;
+    margin: 0 5px 0 5px;
+}
+
+.ProfileAppBar {
+    float: right;
+    Width: 160.28px;
+    Height: 100%;
+    background-color: RGB(44,44,44);
+    padding-right: 25px;
+}
+
+.ProfilePrimaryAppBar {
+    width: 70%;
+    height: 50%;
+    background-color: Transparent;
+    font-family: Segoe UI Light;
+    font-size: 14px;
+    color: White;
+    text-align: right;
+    float: right;
+    vertical-align: Bottom;
+    Padding: 10px 0 0 0;
+    Margin: 0 0 0 0;
+}
+
+.ProfileSecondaryAppBar {
+    width: 70%;
+    height: 50%;
+    background-color: Transparent;
+    font-family: Segoe UI Light;
+    font-size: 12px;
+    color: White;
+    text-align: right;
+    float: right;
+    vertical-align: top;
+    Padding: 0 0 0 0;
+    Margin: 0 0 0 0;
+}
+
+.ProfileImageAppBar {
+    width: 30%;
+    height: 100%;
+    background-color: Transparent;
+    font-family: Segoe UI Symbol;
+    float: Right;
+    text-align: right;
+    vertical-align: Middle;
+    Padding: 0 10px 10px 10px;
+    color: White;
+    font-size: 32px;
+}
+
+    .ProfileImageAppBar:hover {
+        width: 30%;
+        height: 100%;
+        background-color: Transparent;
+        font-family: Segoe UI Symbol;
+        float: Right;
+        text-align: right;
+        vertical-align: Middle;
+        Padding: 0 10px 10px 10px;
+        color: red;
+        font-size: 32px;
+        cursor: pointer;
+        text-decoration:none;
+    }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 51.81px;
+    background-color: RGB(191,191,191);
+    padding-right: 25px;
+}
+
+.FooterBar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 51.81px;
+    background-color: RGB(191,191,191);
+}
+
+.CopyrightPrimaryFooterBar {
+    Height: 60%;
+    width: 100%;
+    background-color: Transparent;
+    font-family: Segoe UI Light;
+    font-weight: Bold;
+    font-size: 12px;
+    color: RGB(64,64,64);
+    text-align: Right;
+    float: right;
+    vertical-align: bottom;
+    Padding: 15px 5px 0 5px;
+}
+
+.CopyrightSecondaryFooterBar {
+    Height: 40%;
+    background-color: Transparent;
+    font-family: Segoe UI Light;
+    font-size: 11px;
+    color: RGB(64,64,64);
+    text-align: Right;
+    float: right;
+    vertical-align: top;
+    Padding: 0 5px 10px 0px;
+}
+
+.SubMenuBar {
+    Width: 100%;
+    Height: 37px;
+    background-color: RGB(188,188,188);
+    vertical-align: Top;
+    -webkit-padding-start: 5px;
+    padding-left: 5px;
+    position: fixed;
+}
+
+.SubMenuItemBar {
+    Height: 100%;
+    background-color: Transparent;
+    font-family: Segoe UI Light;
+    font-size: 20.5px;
+    color: RGB(64,64,64);
+    float: Left;
+    vertical-align: Middle;
+    display: inline;
+    list-style: none;
+    padding-right: 15px;
+}
+
+    .SubMenuItemBar a {
+        background: none;
+        color: RGB(64,64,64);
+        text-decoration: none;
+    }
+
+        .SubMenuItemBar a:hover {
+            Height: 100%;
+            background-color: RGB(215,215,215);
+            font-family: Segoe UI Light;
+            font-size: 20.5px;
+            color: RGB(64,64,64);
+            float: Left;
+            vertical-align: Middle;
+            display: inline;
+            list-style: none;
+            text-decoration: underline;
+        }
+
+.SubMenuItemBarSelected {
+    Height: 100%;
+    background-color: RGB(215,215,215);
+    font-family: Segoe UI Light;
+    font-size: 20.5px;
+    color: RGB(64,64,64);
+    float: Left;
+    vertical-align: Middle;
+    display: inline;
+    list-style: none;
+    padding-right: 15px;
+}
+
+    .SubMenuItemBarSelected a {
+        background: RGB(215,215,215);
+        color: RGB(64,64,64);
+        text-decoration: none;
+    }
+
+
+#body {
+    background-color: white;
+    clear: both;
+    padding-bottom: 35px;
+}
+
+
+body {
+    overflow: auto;
+    min-width: 1024px;
+    background-color: #e2e2e2;
+
+}
+
+.TitleMainContent {
+    Width: 100%;
+    Height: 38.4px;
+    background-color: white;
+    font-family: Segoe UI Light;
+    font-size: 20px;
+    color: RGB(64,64,64);
+    text-align: Right;
+    /*float: Right;*/
+    vertical-align: Top;
+    padding-right: 25px;
+    margin-top: 37px;
+}
+
+.FilterPanelMainContent {
+    display: inline-block;
+    Width: 100%;
+    background-color: RGB(229,229,229);
+    vertical-align: Top;
+    Margin: 0 38.4px 0 0;
+    Padding: 20px 0px 20px 0px;
+}
+
+    .FilterPanelMainContent table {
+        width: 70%;
+    }
+
+        .FilterPanelMainContent table tr td {
+            vertical-align: middle;
+        }
+
+.NormalTextCaptionMainContent {
+    Height: 25.92px;
+    background-color: Transparent;
+    font-family: Segoe UI Light;
+    font-size: 14.5px;
+    color: RGB(64,64,64);
+    text-align: Left;
+    Padding: 10px 10px 20px 10px;
+    display: inline-block;
+}
+
+.NormalTextBoxMainContent {
+    Height: 25.92px;
+    border-width: thin;
+    border-color: RGB(127,127,127);
+    /*background-color: RGB(242,242,242);*/
+    font-family: Segoe UI Light;
+    font-size: 10px;
+    color: RGB(64,64,64);
+    text-align: Left;
+    Padding: 10px 10px 10px 10px;
+    display: inline-block;
+}
+
+.NormalButtonMainContent {
+    Height: 28.8px;
+    background-color: RGB(255,51,0);
+    font-family: Segoe UI Light,'Segoe UI Symbol';
+    font-size: 15px;
+    color: White;
+    text-align: Center;
+    Padding: 5px 10px 0 10px;
+    display: inline-block;
+}
+
+    .NormalButtonMainContent:hover {
+        cursor: pointer;
+        opacity: 0.75;
+    }
+
+.BodyContent {
+    min-height: 95%;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    height: 100%;
+}
+
+.PrimaryCommandItemCommandBarMainContent {
+    height: 100%;
+    /*background:;*/
+    font-family: Segoe UI Symbol;
+    font-size: 16px;
+    color: RGB(64,64,64);
+    text-align: Left;
+    float: Left;
+    Padding: 15px 10px 10px 10px;
+    vertical-align: middle;
+}
+
+    .PrimaryCommandItemCommandBarMainContent span {
+        font-family: Segoe UI Symbol;
+        color: RGB(64,64,64);
+        font-size: 16px;
+    }
+
+        .PrimaryCommandItemCommandBarMainContent span:hover {
+            cursor: pointer;
+            background-color: RGB(234,234,234);
+        }
+
+    .PrimaryCommandItemCommandBarMainContent:hover {
+        background-color: RGB(234,234,234);
+        color: RGB(64,64,64);
+        text-align: Left;
+        float: Left;
+        cursor: pointer;
+    }
+
+.CommandBarMainContent {
+    Width: 100%;
+    Height: 52.8px;
+    background-color: RGB(210,210,210);
+    position: fixed;
+    bottom: 51.81px;
+}
+
+.SecondaryCommandItemCommandBarMainContent {
+    height: 100%;
+    background-color: Transparent;
+    font-family: Segoe UI Symbol;
+    font-size: 16px;
+    color: RGB(64,64,64);
+    text-align: Right;
+    float: Right;
+    Padding: 15px 25px 10px 10px;
+}
+
+    .SecondaryCommandItemCommandBarMainContent span {
+        font-family: Segoe UI Symbol;
+        color: RGB(64,64,64);
+        font-size: 16px;
+    }
+
+        .SecondaryCommandItemCommandBarMainContent span:hover {
+            background-color: RGB(234,234,234);
+            cursor: pointer;
+        }
+
+    .SecondaryCommandItemCommandBarMainContent:hover {
+        background-color: RGB(234,234,234);
+        color: RGB(64,64,64);
+        text-align: right;
+        float: right;
+        cursor: pointer;
+    }
+
+.HomeContent {
+    Width: 100%;
+    Height: 100%;
+    background-color: RGB(223,223,223);
+    Margin: 0 48.96px 0 51.81px;
+}
+
+.IconHomeContent {
+    background-color: Transparent;
+    font-family: Segoe UI Symbol;
+    font-size: 300px;
+    color: White;
+    text-align: right;
+    float: Left;
+    vertical-align: Middle;
+    width: 35%;
+    padding-right: 10px;
+}
+
+.HeaderHomeContent {
+    background-color: Transparent;
+    font-family: Segoe UI Light;
+    font-size: 40px;
+    color: RGB(54,54,54);
+    text-align: Left;
+    float: Right;
+    vertical-align: bottom;
+    width: 65%;
+    height: 100%;
+    padding-left: 10px;
+    margin-top: 7.5%;
+}
+/*Sigin*/
+.MainContentCover {
+    Width: 100%;
+    Height: 100%;
+    background-color: White;
+    Margin: 0 0 0 0;
+    float: right;
+}
+
+
+.FooterBarCover {
+    Width: 99%;
+    Height: 90px;
+    background-color: RGB(191,191,191);
+    vertical-align: Bottom;
+    Margin: 0 5px 5px 0;
+    position: absolute;
+    padding-right: 0px;
+    opacity: 1;
+}
+
+.BodyLogin {
+    overflow: hidden;
+}
+
+.LoginHTML {
+    background: url(../Images/background01.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.RightPanelMainContentCover {
+    width: 525px;
+    height: 85%;
+    border: none;
+    background-color: RGBA(217,217,217,0.5);
+    
+    margin: 0 0 0 0;
+    text-align: right;
+    background-image: inherit;
+    float: right;
+    position: fixed;
+    padding-top: 10px;
+    right: 0.5%;
+    /*top:5px;*/
+    vertical-align: bottom;
+    bottom: 100px;
+}
+
+.LoginCopyrightPrimaryFooterBar {
+    width: 100%;
+    background-color: Transparent;
+    font-family: Segoe UI Light;
+    font-weight: Bold;
+    font-size: 12px;
+    color: RGB(64,64,64);
+    text-align: Right;
+    float: right;
+    vertical-align: bottom;
+    Padding: 45px 25px 0 5px;
+}
+
+.LoginCopyrightSecondaryFooterBar {
+    background-color: Transparent;
+    font-family: Segoe UI Light;
+    font-size: 11px;
+    color: RGB(64,64,64);
+    text-align: Right;
+    float: right;
+    vertical-align: top;
+    Padding: 0 25px 10px 0px;
+}
+
+.LogoImageRightPanelMainContentCover {
+    Border: None;
+    text-align: Right;
+    vertical-align: Top;
+    Margin: 10px 10px 10px 245px;
+}
+
+.PrimaryBarRightPanelMainContentCover {
+    width: 481.92px;
+    height: 143.04px;
+    border: none;
+    background-color: RGBA(0,112,192,0.50);
+    text-align: left;
+    margin: 75px 0 0 44px;
+    vertical-align: top;
+    position: fixed;
+}
+
+
+
+
+.TitleTextCaptionMainContent {
+    margin: 75px 0 0 75px;
+    font-family: Segoe UI Light;
+    font-size: 12px;
+    /*color: RGB(64,64,64);*/
+    text-align: left;
+    padding: 0 10px 0 10px;
+}
+
+.SecondaryBarRightPanelMainContentCover {
+    Width: 434.88px;
+    Height: 165.00px;
+    Border: None;
+    background-color: RGBA(0,112,192,0.5);
+    /*Opacity: 0.50;*/
+    margin: 120px 0 10px 91px;
+    text-align: left;
+    vertical-align: Top;
+    position: fixed;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+}
+
+.TitleTextBoxMainContentUserName {
+    Height: 40px;
+    Border: 1px;
+    border-color: RGB(127,127,127);
+    background-color: RGBA(0,112,192,0);
+    font-family: Segoe UI Light;
+    font-size: 12px;
+    text-align: Left;
+    Padding: 12px 20px 0 12px;
+    vertical-align: middle;
+    position: relative;
+    
+}
+
+.TitleTextBoxMainContentPassword {
+    Height: 43px;
+    Border: 1px;
+    border-color: RGB(127,127,127);
+    background-color: RGBA(0,112,192,0);
+    font-family: Segoe UI Light;
+    font-size: 12px;
+    text-align: Left;
+    Padding: 2px 20px 0 12px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.TitleTextBoxMainContent {
+    width: 66%;
+    color: black;
+    font-family: Segoe UI Light;
+    height: 28px;
+    padding-left: 10px;
+}
+
+.SubtitleTextCaptionMainContent {
+    /*background-color: Transparent;*/
+    font-family: Segoe UI Light;
+    Font-Size: 16px;
+    color: black;
+    text-align: Left;
+    Padding: 0 10px 0 8px;
+    vertical-align: middle;
+}
+
+.TitleButtonMainContent {
+    Height: 30px;
+    width: 110px;
+    background-color: RGB(0,112,192);
+    Font-Family: Segoe UI Light,'Segoe UI Symbol';
+    font-size: 20px;
+    color: White;
+    text-align: center;
+    margin: 8px 10px 10px 12px;
+    vertical-align: middle;
+    position: relative;
+   box-shadow: 1px 1.5px 1.5px #FFFFFF;
+}
+
+    .TitleButtonMainContent:hover {
+        cursor: pointer;
+        background-color: white; /*#dfdadb;*/
+        color: black;
+         box-shadow: 1px 1.5px 1.5px #888888;
+    }
+ 
+/*Placeholder in text box style*/
+::-webkit-input-placeholder {
+    color: black;
+    font-style: oblique;
+}
+
+:-moz-placeholder {
+    color: black;
+    font-style: oblique;
+}
+
+::-moz-placeholder {
+    color: black;
+    font-style: oblique;
+}
+
+:-ms-input-placeholder {
+    color: black;
+    font-style: oblique;
+}
+input[type="text"]:focus,input[type="password"]:focus {
+    border: 2px solid;
+    border-color:yellow;
+}
+
+/*Auto resize panel*/
+@media only screen and (min-width : 500px) {
+    .RightPanelMainContentCover {
+        width: 525px;
+        height: 79%;
+        border: none;
+        background-color: RGBA(217,217,217,0.65);
+        /*opacity:0.75;*/
+        margin: 0 0 0 0;
+        text-align: left;
+        background-image: inherit;
+        float: right;
+        position: fixed;
+        padding-top: 10px;
+        right: 0.5%;
+        /*top:5px;*/
+        vertical-align: bottom;
+        bottom: 100px;
+        
+    }
+}
+
+
+
+@media only screen and (min-width : 640px) {
+    .RightPanelMainContentCover {
+        height: 80%;
+
+    }
+}
+
+@media only screen and (min-width : 800px) {
+    .RightPanelMainContentCover {
+        height: 77.5%;
+
+    }
+}
+
+@media only screen and (min-width : 1000px) {
+    .RightPanelMainContentCover {
+        height: 79%;
+    }
+}
+@media only screen and (min-width : 1200px) {
+    .RightPanelMainContentCover {
+        height: 80%;
+    }
+}
+
+@media only screen and (min-width : 1300px) {
+    .RightPanelMainContentCover {
+        height: 83%;
+    
+    }
+}
+
+@media only screen and (min-width : 1400px) {
+    .RightPanelMainContentCover {
+        height: 88.8%;
+   
+    }
+}
+
+/*Modal Popup*/
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    cursor: default;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    visibility: hidden;
+    z-index: 1;
+
+    -webkit-transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    -ms-transition: opacity .5s;
+    -o-transition: opacity .5s;
+    transition: opacity .5s;
+}
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+.popup {
+    background-color:  black;
+    /*border: 3px solid #fff;*/
+    display: inline-block;
+    left: 0;
+    opacity: 0;
+    /*padding: 15px;*/
+    position: fixed;
+    text-align: center;
+    width:100%;
+    height:150px;
+    top: 40%;
+    visibility: hidden;
+    z-index: 10;
+    vertical-align:middle;
+
+}
+    .popup span {
+       margin-top:60px;
+        color:white;
+         Font-Family: Segoe UI Light,'Segoe UI Symbol';
+         font-size:32px;
+         vertical-align:middle;
+    }
+.overlay:target+.popup {
+    
+    top: 40%;
+    opacity: 1;
+    visibility: visible;
+}
+/*.close {
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-decoration: none;
+    top: -15px;
+    width: 30px;
+
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    border-radius: 15px;
+}*/
+.close:before {
+    color: rgba(255, 255, 255, 0.9);
+    content: "X";
+    font-size: 24px;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.9);
+}/*
+.close:hover {
+    background-color: rgba(64, 128, 128, 0.8);
+}*/
+.popup p, .popup div {
+    margin-top: 50px;
+}
+.popup label {
+    display: inline-block;
+    text-align: left;
+    width: 120px;
+}

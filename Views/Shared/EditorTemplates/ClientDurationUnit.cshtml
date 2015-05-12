@@ -1,0 +1,20 @@
+﻿@model HESTraining.Models.Employee
+
+@(Html.Kendo().DropDownListFor(m => m)
+        .DataValueField("Value")
+        .DataTextField("Text")
+                      .BindTo(new List<SelectListItem>() {
+              new SelectListItem() {
+                  Text = "Hour(s)",
+                  Value = "Hour(s)"
+              },
+              new SelectListItem() {
+                  Text = "Day(s)",
+                  Value = "Day(s)"
+              },
+              new SelectListItem() {
+                  Text = "Month(s)",
+                  Value = "Month(s)"
+              }
+          })
+)

@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HES_TrainingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TrainingCourses" Relationship="Self.FK_dbo_TrainingCourses_dbo_Categories_CategoryID" FromRole="Categories" ToRole="TrainingCourses" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CompanyStaffs" Relationship="Self.FK_dbo_CompanyStaffs_dbo_Companies_CompanyID" FromRole="Companies" ToRole="CompanyStaffs" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Users_dbo_Companies_CompanyID" FromRole="Companies" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="CompanyStaff">
+    <Key>
+      <PropertyRef Name="CompanyStaffID" />
+    </Key>
+    <Property Name="CompanyStaffID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_dbo_CompanyStaffs_dbo_Companies_CompanyID" FromRole="CompanyStaffs" ToRole="Companies" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_dbo_CompanyStaffs_dbo_Employees_EmployeeID" FromRole="CompanyStaffs" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentCode" />
+    </Key>
+    <Property Name="DepartmentCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DepartmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Employees_dbo_Departments_DepartmentCode" FromRole="Departments" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LoginName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AuthenDomain" Type="Boolean" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DomainName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TitleEn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FirstNameEn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MidNameEn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastNameEn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TitleTh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FirstNameTh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MidNameTh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastNameTh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CitizenID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateFrom" Type="DateTime" Precision="0" />
+    <Property Name="DateTo" Type="DateTime" Precision="0" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="DepartmentCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PositionID" Type="Int32" />
+    <Property Name="PositionNameEn" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PositionNameTh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Int32" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_dbo_Users_dbo_Companies_CompanyID" FromRole="Employees" ToRole="Companies" />
+    <NavigationProperty Name="CompanyStaffs" Relationship="Self.FK_dbo_CompanyStaffs_dbo_Employees_EmployeeID" FromRole="Employees" ToRole="CompanyStaffs" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_dbo_Employees_dbo_Departments_DepartmentCode" FromRole="Employees" ToRole="Departments" />
+    <NavigationProperty Name="Position" Relationship="Self.FK_dbo_Employees_dbo_Positions_PositionID" FromRole="Employees" ToRole="Positions" />
+    <NavigationProperty Name="TrainingRecords" Relationship="Self.FK_dbo_TrainingRecords_dbo_Employees_EmployeeID" FromRole="Employees" ToRole="TrainingRecords" />
+    <NavigationProperty Name="UserAccounts" Relationship="Self.FK_UserAccounts_Employees" FromRole="Employees" ToRole="UserAccounts" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="PositionID" />
+    </Key>
+    <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PositionTitleEn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PositionTitleTh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Employees_dbo_Positions_PositionID" FromRole="Positions" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TrainingRecords" Relationship="Self.FK_dbo_TrainingRecords_dbo_Projects_ProjectID" FromRole="Projects" ToRole="TrainingRecords" />
+  </EntityType>
+  <EntityType Name="TrainingCourse">
+    <Key>
+      <PropertyRef Name="TrainingCourseID" />
+    </Key>
+    <Property Name="TrainingCourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseNameEn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CourseNameTh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Int32" Nullable="false" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="DurationUnit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_dbo_TrainingCourses_dbo_Categories_CategoryID" FromRole="TrainingCourses" ToRole="Categories" />
+    <NavigationProperty Name="TrainingRecords" Relationship="Self.FK_dbo_TrainingRecords_dbo_TrainingCourses_TrainingCourseID" FromRole="TrainingCourses" ToRole="TrainingRecords" />
+  </EntityType>
+  <EntityType Name="TrainingRecord">
+    <Key>
+      <PropertyRef Name="TrainingRecordID" />
+    </Key>
+    <Property Name="TrainingRecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="TrainingCourseID" Type="Int32" />
+    <Property Name="Trainer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Organized" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TrainingStartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TrainingEndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Venue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CertificateHESInduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="FollowUpSSE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MonthOfCompletionSSE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="YearOfCompletionSSE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_dbo_TrainingRecords_dbo_Employees_EmployeeID" FromRole="TrainingRecords" ToRole="Employees" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_dbo_TrainingRecords_dbo_Projects_ProjectID" FromRole="TrainingRecords" ToRole="Projects" />
+    <NavigationProperty Name="TrainingCourse" Relationship="Self.FK_dbo_TrainingRecords_dbo_TrainingCourses_TrainingCourseID" FromRole="TrainingRecords" ToRole="TrainingCourses" />
+  </EntityType>
+  <EntityType Name="MenuItem">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ParentMenuID" Type="Int32" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Int32" />
+    <Property Name="MenuOrder" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UserAccount">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_UserAccounts_Employees" FromRole="UserAccounts" ToRole="Employees" />
+  </EntityType>
+  <Association Name="FK_dbo_TrainingCourses_dbo_Categories_CategoryID">
+    <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="TrainingCourses" Type="HES_TrainingModel.TrainingCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="TrainingCourses">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_CompanyStaffs_dbo_Companies_CompanyID">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="CompanyStaffs" Type="Self.CompanyStaff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="CompanyStaffs">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Users_dbo_Companies_CompanyID">
+    <End Role="Companies" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_CompanyStaffs_dbo_Employees_EmployeeID">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="CompanyStaffs" Type="Self.CompanyStaff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="CompanyStaffs">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employees_dbo_Departments_DepartmentCode">
+    <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentCode" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="DepartmentCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employees_dbo_Positions_PositionID">
+    <End Role="Positions" Type="Self.Position" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Positions">
+        <PropertyRef Name="PositionID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="PositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TrainingRecords_dbo_Employees_EmployeeID">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="TrainingRecords" Type="Self.TrainingRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="TrainingRecords">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAccounts_Employees">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="UserAccounts" Type="Self.UserAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="UserAccounts">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TrainingRecords_dbo_Projects_ProjectID">
+    <End Role="Projects" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="TrainingRecords" Type="Self.TrainingRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="TrainingRecords">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TrainingRecords_dbo_TrainingCourses_TrainingCourseID">
+    <End Role="TrainingCourses" Type="HES_TrainingModel.TrainingCourse" Multiplicity="0..1" />
+    <End Role="TrainingRecords" Type="Self.TrainingRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingCourses">
+        <PropertyRef Name="TrainingCourseID" />
+      </Principal>
+      <Dependent Role="TrainingRecords">
+        <PropertyRef Name="TrainingCourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Companies" EntityType="Self.Company" />
+    <EntitySet Name="CompanyStaffs" EntityType="Self.CompanyStaff" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Positions" EntityType="Self.Position" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="TrainingCourses" EntityType="HES_TrainingModel.TrainingCourse" />
+    <EntitySet Name="TrainingRecords" EntityType="Self.TrainingRecord" />
+    <EntitySet Name="MenuItems" EntityType="Self.MenuItem" />
+    <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
+    <AssociationSet Name="FK_dbo_TrainingCourses_dbo_Categories_CategoryID" Association="Self.FK_dbo_TrainingCourses_dbo_Categories_CategoryID">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="TrainingCourses" EntitySet="TrainingCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_CompanyStaffs_dbo_Companies_CompanyID" Association="Self.FK_dbo_CompanyStaffs_dbo_Companies_CompanyID">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="CompanyStaffs" EntitySet="CompanyStaffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Users_dbo_Companies_CompanyID" Association="Self.FK_dbo_Users_dbo_Companies_CompanyID">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_CompanyStaffs_dbo_Employees_EmployeeID" Association="Self.FK_dbo_CompanyStaffs_dbo_Employees_EmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="CompanyStaffs" EntitySet="CompanyStaffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employees_dbo_Departments_DepartmentCode" Association="Self.FK_dbo_Employees_dbo_Departments_DepartmentCode">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employees_dbo_Positions_PositionID" Association="Self.FK_dbo_Employees_dbo_Positions_PositionID">
+      <End Role="Positions" EntitySet="Positions" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TrainingRecords_dbo_Employees_EmployeeID" Association="Self.FK_dbo_TrainingRecords_dbo_Employees_EmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="TrainingRecords" EntitySet="TrainingRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAccounts_Employees" Association="Self.FK_UserAccounts_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TrainingRecords_dbo_Projects_ProjectID" Association="Self.FK_dbo_TrainingRecords_dbo_Projects_ProjectID">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="TrainingRecords" EntitySet="TrainingRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TrainingRecords_dbo_TrainingCourses_TrainingCourseID" Association="Self.FK_dbo_TrainingRecords_dbo_TrainingCourses_TrainingCourseID">
+      <End Role="TrainingCourses" EntitySet="TrainingCourses" />
+      <End Role="TrainingRecords" EntitySet="TrainingRecords" />
+    </AssociationSet>
+    <FunctionImport Name="spGetDepartmentById" ReturnType="Collection(HES_TrainingModel.spGetDepartmentById_Result)">
+      <Parameter Name="DepartmentCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Roles" EntityType="HES_TrainingModel.Role" />
+    <EntitySet Name="UserInRoles" EntityType="HES_TrainingModel.UserInRole" />
+    <AssociationSet Name="FK_UserInRoles_Roles" Association="HES_TrainingModel.FK_UserInRoles_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserInRole" EntitySet="UserInRoles" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="spGetDepartmentById_Result">
+    <Property Type="String" Name="DepartmentCode" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="DepartmentName" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserInRoles" Relationship="HES_TrainingModel.FK_UserInRoles_Roles" FromRole="Role" ToRole="UserInRole" />
+  </EntityType>
+  <EntityType Name="UserInRole">
+    <Key>
+      <PropertyRef Name="UserInRoleID" />
+    </Key>
+    <Property Name="UserInRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="HES_TrainingModel.FK_UserInRoles_Roles" FromRole="UserInRole" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_UserInRoles_Roles">
+    <End Type="HES_TrainingModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="HES_TrainingModel.UserInRole" Role="UserInRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UserInRole">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

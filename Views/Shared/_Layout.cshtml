@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - HES Training</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/kendo/css")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/kendo")
+    <script src="@Url.Content("~/Scripts/cultures/kendo.culture.en-GB.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+
+
+    <link href="~/Content/CUELStyles.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.js"></script>
+    	<script src="@Url.Content("~/Scripts/kendo/2015.1.318/jszip.min.js")"></script>
+    <script src="~/Scripts/cultures/kendo.culture.en-GB.min.js"></script>
+</head>
+<body>
+
+
+        @*@Html.Action("MenuLayout", "Home", new { name = "Main" })*@
+        @Html.Partial("_CUELMenu")
+
+
+
+
+        <div class="TitleMainContent">
+            HES Tranining Record
+        </div>
+        @RenderBody()
+
+
+
+    <footer>
+        <div class="FooterBar">
+            <div class="CopyrightPrimaryFooterBar">
+                CUEL IT Application.
+            </div>
+            <div class="CopyrightSecondaryFooterBar">
+                Copyright ©2015 - CUEL Limited
+            </div>
+
+
+        </div>
+    </footer>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

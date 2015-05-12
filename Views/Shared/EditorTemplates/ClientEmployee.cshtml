@@ -1,0 +1,16 @@
+﻿@model object
+
+@*@(Html.Kendo().DropDownListFor(m => m)
+        .DataValueField("EmployeeID")
+            .DataTextField("FirstNameEn")
+                .Filter("contains")
+        .BindTo((System.Collections.IEnumerable)ViewBag.employees)
+              
+)*@
+
+@(
+     Html.Kendo().DropDownListFor(m => m)
+            .Filter("contains")
+                   .BindTo((SelectList)ViewData[ViewData.TemplateInfo.GetFullHtmlFieldName("") + "_Data"])
+                .HtmlAttributes(new { data_value_primitive = true })
+    )

@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationUserWorkFlows" nillable="true" type="tns:ArrayOfApplicationUserWorkFlow" />
+      <xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsAD" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsOracle" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsResigned" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginLogs" nillable="true" type="tns:ArrayOfLoginLog" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Position" nillable="true" type="tns:Position" />
+      <xs:element minOccurs="0" name="PositionID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ResignDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UserApplications" nillable="true" type="tns:ArrayOfUserApplication" />
+      <xs:element minOccurs="0" name="UserCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserType" nillable="true" type="tns:UserType" />
+      <xs:element minOccurs="0" name="UserTypeID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowDetailExcludings" nillable="true" type="tns:ArrayOfWorkFlowDetailExcluding" />
+      <xs:element minOccurs="0" name="WorkFlowDetailIncludings" nillable="true" type="tns:ArrayOfWorkFlowDetailIncluding" />
+      <xs:element minOccurs="0" name="WorkFlowTrackings" nillable="true" type="tns:ArrayOfWorkFlowTracking" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfApplicationUserWorkFlow">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ApplicationUserWorkFlow" nillable="true" type="tns:ApplicationUserWorkFlow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfApplicationUserWorkFlow" nillable="true" type="tns:ArrayOfApplicationUserWorkFlow" />
+  <xs:complexType name="ApplicationUserWorkFlow">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Application" nillable="true" type="tns:Application" />
+      <xs:element minOccurs="0" name="ApplicationCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationUserWorkFlowID" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlow" nillable="true" type="tns:WorkFlow" />
+      <xs:element minOccurs="0" name="WorkFlowCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkFlowTrackings" nillable="true" type="tns:ArrayOfWorkFlowTracking" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApplicationUserWorkFlow" nillable="true" type="tns:ApplicationUserWorkFlow" />
+  <xs:complexType name="Application">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationDirectory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationPermissions" nillable="true" type="tns:ArrayOfApplicationPermission" />
+      <xs:element minOccurs="0" name="ApplicationServer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationURL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationUserWorkFlows" nillable="true" type="tns:ArrayOfApplicationUserWorkFlow" />
+      <xs:element minOccurs="0" name="ConnectionString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DbLogin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DbPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Icon" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPublic" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LoginLogs" nillable="true" type="tns:ArrayOfLoginLog" />
+      <xs:element minOccurs="0" name="OwerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserApplications" nillable="true" type="tns:ArrayOfUserApplication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Application" nillable="true" type="tns:Application" />
+  <xs:complexType name="ArrayOfApplicationPermission">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ApplicationPermission" nillable="true" type="tns:ApplicationPermission" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfApplicationPermission" nillable="true" type="tns:ArrayOfApplicationPermission" />
+  <xs:complexType name="ApplicationPermission">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Application" nillable="true" type="tns:Application" />
+      <xs:element minOccurs="0" name="ApplicationCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationPermissionFunctions" nillable="true" type="tns:ArrayOfApplicationPermissionFunction" />
+      <xs:element minOccurs="0" name="ApplicationPermissionID" type="xs:int" />
+      <xs:element minOccurs="0" name="ApplicationPermissionScreens" nillable="true" type="tns:ArrayOfApplicationPermissionScreen" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Permission" nillable="true" type="tns:Permission" />
+      <xs:element minOccurs="0" name="PermissionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserApplications" nillable="true" type="tns:ArrayOfUserApplication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApplicationPermission" nillable="true" type="tns:ApplicationPermission" />
+  <xs:complexType name="ArrayOfApplicationPermissionFunction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ApplicationPermissionFunction" nillable="true" type="tns:ApplicationPermissionFunction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfApplicationPermissionFunction" nillable="true" type="tns:ArrayOfApplicationPermissionFunction" />
+  <xs:complexType name="ApplicationPermissionFunction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationPermission" nillable="true" type="tns:ApplicationPermission" />
+      <xs:element minOccurs="0" name="ApplicationPermissionID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FunctionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PermissionFunctionID" type="xs:int" />
+      <xs:element minOccurs="0" name="SystemFunction" nillable="true" type="tns:SystemFunction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApplicationPermissionFunction" nillable="true" type="tns:ApplicationPermissionFunction" />
+  <xs:complexType name="SystemFunction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationPermissionFunctions" nillable="true" type="tns:ArrayOfApplicationPermissionFunction" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FunctionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FunctionDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FunctionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UpdatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SystemFunction" nillable="true" type="tns:SystemFunction" />
+  <xs:complexType name="ArrayOfApplicationPermissionScreen">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ApplicationPermissionScreen" nillable="true" type="tns:ApplicationPermissionScreen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfApplicationPermissionScreen" nillable="true" type="tns:ArrayOfApplicationPermissionScreen" />
+  <xs:complexType name="ApplicationPermissionScreen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationPermission" nillable="true" type="tns:ApplicationPermission" />
+      <xs:element minOccurs="0" name="ApplicationPermissionID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MenuCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PermissionScreenID" type="xs:int" />
+      <xs:element minOccurs="0" name="ScreenCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SystemMenu" nillable="true" type="tns:SystemMenu" />
+      <xs:element minOccurs="0" name="SystemScreen" nillable="true" type="tns:SystemScreen" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApplicationPermissionScreen" nillable="true" type="tns:ApplicationPermissionScreen" />
+  <xs:complexType name="SystemMenu">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationPermissionScreens" nillable="true" type="tns:ArrayOfApplicationPermissionScreen" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MenuCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MenuDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MenuName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SystemMenu" nillable="true" type="tns:SystemMenu" />
+  <xs:complexType name="SystemScreen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationPermissionScreens" nillable="true" type="tns:ArrayOfApplicationPermissionScreen" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsParentScreen" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsWinform" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ParentScreenCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScreenCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScreenFile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScreenFolder" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScreenName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdastedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdatedBy" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SystemScreen" nillable="true" type="tns:SystemScreen" />
+  <xs:complexType name="Permission">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationPermissions" nillable="true" type="tns:ArrayOfApplicationPermission" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PermissionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PermissionDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PermissionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Permission" nillable="true" type="tns:Permission" />
+  <xs:complexType name="ArrayOfUserApplication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserApplication" nillable="true" type="tns:UserApplication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserApplication" nillable="true" type="tns:ArrayOfUserApplication" />
+  <xs:complexType name="UserApplication">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Application" nillable="true" type="tns:Application" />
+      <xs:element minOccurs="0" name="ApplicationCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationPermission" nillable="true" type="tns:ApplicationPermission" />
+      <xs:element minOccurs="0" name="ApplicationPermissionID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserApplicationID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserApplication" nillable="true" type="tns:UserApplication" />
+  <xs:complexType name="ArrayOfLoginLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LoginLog" nillable="true" type="tns:LoginLog" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLoginLog" nillable="true" type="tns:ArrayOfLoginLog" />
+  <xs:complexType name="LoginLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Application" nillable="true" type="tns:Application" />
+      <xs:element minOccurs="0" name="ApplicationCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Detail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="IPAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginLog" nillable="true" type="tns:LoginLog" />
+  <xs:complexType name="WorkFlow">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationUserWorkFlows" nillable="true" type="tns:ArrayOfApplicationUserWorkFlow" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UpdatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WorkFlowCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkFlowDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkFlowDetails" nillable="true" type="tns:ArrayOfWorkFlowDetail" />
+      <xs:element minOccurs="0" name="WorkFlowName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkFlow" nillable="true" type="tns:WorkFlow" />
+  <xs:complexType name="ArrayOfWorkFlowDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkFlowDetail" nillable="true" type="tns:WorkFlowDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkFlowDetail" nillable="true" type="tns:ArrayOfWorkFlowDetail" />
+  <xs:complexType name="WorkFlowDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsLastLevel" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PositionLevel" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackingDetails" nillable="true" type="tns:ArrayOfTrackingDetail" />
+      <xs:element minOccurs="0" name="UpdatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WorkFlow" nillable="true" type="tns:WorkFlow" />
+      <xs:element minOccurs="0" name="WorkFlowCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkFlowDetailExcludings" nillable="true" type="tns:ArrayOfWorkFlowDetailExcluding" />
+      <xs:element minOccurs="0" name="WorkFlowDetailID" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowDetailIncludings" nillable="true" type="tns:ArrayOfWorkFlowDetailIncluding" />
+      <xs:element minOccurs="0" name="WorkFlowDetailLevel" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkFlowDetail" nillable="true" type="tns:WorkFlowDetail" />
+  <xs:complexType name="ArrayOfTrackingDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrackingDetail" nillable="true" type="tns:TrackingDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrackingDetail" nillable="true" type="tns:ArrayOfTrackingDetail" />
+  <xs:complexType name="TrackingDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TrackingDetailID" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackingID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackingStatu" nillable="true" type="tns:TrackingStatu" />
+      <xs:element minOccurs="0" name="TrackingStatusCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkFlowDetail" nillable="true" type="tns:WorkFlowDetail" />
+      <xs:element minOccurs="0" name="WorkFlowDetailID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowTracking" nillable="true" type="tns:WorkFlowTracking" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackingDetail" nillable="true" type="tns:TrackingDetail" />
+  <xs:complexType name="TrackingStatu">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TrackingDetailApprovals" nillable="true" type="tns:ArrayOfTrackingDetailApproval" />
+      <xs:element minOccurs="0" name="TrackingDetails" nillable="true" type="tns:ArrayOfTrackingDetail" />
+      <xs:element minOccurs="0" name="TrackingStatusCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrackingStatusName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackingStatu" nillable="true" type="tns:TrackingStatu" />
+  <xs:complexType name="ArrayOfTrackingDetailApproval">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrackingDetailApproval" nillable="true" type="tns:TrackingDetailApproval" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrackingDetailApproval" nillable="true" type="tns:ArrayOfTrackingDetailApproval" />
+  <xs:complexType name="TrackingDetailApproval">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StatusBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackingDetailApprovalID" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackingDetailID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackingStatu" nillable="true" type="tns:TrackingStatu" />
+      <xs:element minOccurs="0" name="TrackingStatusCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackingDetailApproval" nillable="true" type="tns:TrackingDetailApproval" />
+  <xs:complexType name="WorkFlowTracking">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationUserWorkFlow" nillable="true" type="tns:ApplicationUserWorkFlow" />
+      <xs:element minOccurs="0" name="ApplicationUserWorkFlowID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DocumentNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FinishDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsFinished" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TrackingDetails" nillable="true" type="tns:ArrayOfTrackingDetail" />
+      <xs:element minOccurs="0" name="TrackingID" type="xs:int" />
+      <xs:element minOccurs="0" name="TrackingNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkFlowTracking" nillable="true" type="tns:WorkFlowTracking" />
+  <xs:complexType name="ArrayOfWorkFlowDetailExcluding">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkFlowDetailExcluding" nillable="true" type="tns:WorkFlowDetailExcluding" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkFlowDetailExcluding" nillable="true" type="tns:ArrayOfWorkFlowDetailExcluding" />
+  <xs:complexType name="WorkFlowDetailExcluding">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DescriptionDetail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExcludingID" type="xs:int" />
+      <xs:element minOccurs="0" name="IsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UpdatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowDetail" nillable="true" type="tns:WorkFlowDetail" />
+      <xs:element minOccurs="0" name="WorkFlowDetailID" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkFlowDetailExcluding" nillable="true" type="tns:WorkFlowDetailExcluding" />
+  <xs:complexType name="ArrayOfWorkFlowDetailIncluding">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkFlowDetailIncluding" nillable="true" type="tns:WorkFlowDetailIncluding" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkFlowDetailIncluding" nillable="true" type="tns:ArrayOfWorkFlowDetailIncluding" />
+  <xs:complexType name="WorkFlowDetailIncluding">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DescriptionDetail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncludingID" type="xs:int" />
+      <xs:element minOccurs="0" name="IsEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsOnbehalf" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OnbehalfID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkFlowDetail" nillable="true" type="tns:WorkFlowDetail" />
+      <xs:element minOccurs="0" name="WorkFlowDetailID" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkFlowDetailIncluding" nillable="true" type="tns:WorkFlowDetailIncluding" />
+  <xs:complexType name="ArrayOfWorkFlowTracking">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkFlowTracking" nillable="true" type="tns:WorkFlowTracking" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkFlowTracking" nillable="true" type="tns:ArrayOfWorkFlowTracking" />
+  <xs:complexType name="Position">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Department" nillable="true" type="tns:Department" />
+      <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentPositionID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PositionID" type="xs:int" />
+      <xs:element minOccurs="0" name="PositionLevel" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PositionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Position" nillable="true" type="tns:Position" />
+  <xs:complexType name="Department">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Positions" nillable="true" type="tns:ArrayOfPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Department" nillable="true" type="tns:Department" />
+  <xs:complexType name="ArrayOfPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Position" nillable="true" type="tns:Position" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPosition" nillable="true" type="tns:ArrayOfPosition" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="UserType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsExternal" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserTypeID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserType" nillable="true" type="tns:UserType" />
+</xs:schema>

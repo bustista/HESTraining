@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+
+@(Html.Kendo().Grid<HESTraining.Models.Department>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(d => d.DepartmentCode).Title("Department Code").Width(200);
+        columns.Bound(d => d.DepartmentName).Title("Department Name");
+        columns.Command(command => { command.Edit(); command.Destroy(); });
+    })
+    .ToolBar(toolbar => toolbar.Create())
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+        .Pageable(pager => { pager.PageSizes(true);})
+    .Sortable()
+    .Scrollable()
+    .Filterable()
+    .HtmlAttributes(new { style = "height:430px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(10)
+            .Events(events => events.Error("onError"))
+        .Model(model => model.Id(d => d.DepartmentCode))
+            .Create(update => update.Action("Department_Create", "Department"))
+                .Read(read => read.Action("Department_Read", "Department"))
+                .Update(update => update.Action("Department_Update", "Department"))
+                        .Destroy(update => update.Action("Department_Destroy", "Department"))
+    )
+)
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+    function onError(e, status) {
+        if (e.status = "customerror") {
+            alert(e.errors);
+        }
+        else {
+            alert("Generic server error.");
+        }
+    }
+</script>

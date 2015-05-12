@@ -1,0 +1,121 @@
+﻿@model HESTraining.Models.CompanyViewModel
+
+@{
+    ViewBag.Title = "Company";
+}
+
+<h2>Company</h2>
+<br />
+<form class="form-horizontal">
+    <div class="form-group">
+        @Html.Label("Company Code", new { @class = "col-sm-2" })
+        <div class="col-sm-10">
+            @Html.Kendo().TextBox().Name("CompanyCode").HtmlAttributes(new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Company Name", new { @class = "col-sm-2" })
+        <div class="col-sm-10">
+            @Html.Kendo().TextBox().Name("CompanyName").HtmlAttributes(new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            @(Html.Kendo().Button()
+        .Name("btnSearch")
+        .HtmlAttributes(new { type = "button" })
+        .Content("Search"))
+            @(Html.Kendo().Button()
+                        .Name("btnNew")
+                    .HtmlAttributes(new { type = "button", @class = "btn btn-primary" })
+                    .Content("New"))
+        </div>
+    </div>
+</form>
+
+@(Html.Kendo().Grid<HESTraining.Models.CompanyStaff>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.CompanyID).Title("Company Code").Width(150);
+        //columns.ForeignKey(c => c.Company, (IEnumerable<HESTraining.Models.CompanyStaffViewModel>)ViewBag.companys, "CompanyID", "CompanyName").Title("Company Name").Width(200);
+        columns.Bound(c => c.DateFrom).Title("Date From").Width(150);
+        columns.Bound(c => c.DateTo).Title("Date To").Width(150);
+        columns.Bound(c => c.CompanyID).Title("Company Code").Width(150);
+        columns.Command(command => { command.Edit(); command.Destroy().Text("Remove"); }).Width(180);
+    })
+        //.ToolBar(toolbar => toolbar.Create().Text("New"))
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .AutoBind(false)
+        .Pageable(pager => { pager.PageSizes(true); })
+    .Sortable()
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:430px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(10)
+            .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(c => c.CompanyStaffID))
+        .Create(update => update.Action("Create", "CompanyStaff"))
+            .Read(read => read.Action("Read", "CompanyStaff"))
+            .Update(update => update.Action("Update", "CompanyStaff"))
+            .Destroy(update => update.Action("Destroy", "CompanyStaff"))
+    )
+)
+
+
+@(Html.Kendo().Window()
+    .Name("alertWindow")
+    .Title("Status Message from Server")
+    .Draggable()
+    .Resizable()
+    .Width(400)
+    .Height(200)
+    .Modal(true)
+    .Visible(false)
+)
+<script type="text/javascript">
+    $('#btnNew').on('click', function () {
+        $("#grid").data("kendoGrid").addRow();
+    });
+    function showAlertWindow(message) {
+        var alertWindow = $('#alertWindow').data('kendoWindow');
+        alertWindow.content(message);
+        alertWindow.refresh();
+        alertWindow.center();
+        alertWindow.open();
+    }
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            showAlertWindow(message);
+        }
+    }
+    $("#btnSearch").click(function () {
+        $filter = new Array();
+
+        $employee = $("#Employee").val();
+        $empCode = $("#EmpCode").val();
+
+        if ($employee) {
+            $filter.push({ field: "EmployeeID", operator: "eq", value: $employee });
+        }
+        if ($empCode) {
+            $filter.push({ field: "EmpCode", operator: "contains", value: $empCode });
+        }
+
+
+        var grid = $("#grid").data("kendoGrid");
+
+        grid.dataSource.filter($filter);
+        grid.dataSource.read();
+    });
+</script>

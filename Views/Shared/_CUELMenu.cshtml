@@ -1,0 +1,75 @@
+﻿
+<script>
+    $(function () {
+        //$('#menuAdmin,#menuUser').hide();
+        $('#menuHeaderAdmin,#menuAdmin').hover(function () { $('#menuAdmin').toggle(); });
+        $('#menuHeaderUser,#menuUser').hover(function () { $('#menuUser').toggle(); });
+    });
+
+</script>
+<div class="AppBar">
+    <div class="IconAppBar">
+        🎓
+    </div>
+    <div class="TitleAppBar">
+        HES Traning Record System
+    </div>
+    @if (User.IsInRole("HES Admin") || User.IsInRole("Admin"))
+    {
+        <div id="menuHeaderAdmin" class="MenuItemAppBar">
+            HES Admin
+        </div>
+    }
+    @if (User.IsInRole("User"))
+    {
+        <div class="MenuSeparatorAppBar">
+            |
+        </div>
+        <div id="menuHeaderUser" class="MenuItemAppBar">
+            @*<a id="">HES User</a>*@
+            HES User
+        </div>
+      
+    }
+    <div class="MenuSeparatorAppBar">
+        |
+    </div>
+    <div class="ProfileAppBar">
+        <div id="profileIcon" class="ProfileImageAppBar">
+            <a href="/Account/LogOff" title="Logout" class="ProfileImageAppBar">👤</a>
+        </div>
+        @try
+        {
+            <div class="ProfilePrimaryAppBar">
+
+                @Html.Action("GetFirstName", "Account")
+            </div>
+            <div class="ProfileSecondaryAppBar">
+                @Html.Action("GetLastName", "Account")
+            </div>
+        }
+        catch (Exception)
+        {
+            @Html.Action("LogOff","Account")
+        }
+
+    </div>
+</div>
+@*<header class="SubMenuBar">*@
+
+    @*@for (var i = 0; i < 5; i++)
+        {
+            <li>@Html.ActionLink("Recieved Register", "Index", "Home")</li>
+        }*@
+
+    <ul id="menuAdmin" class="SubMenuBar" style="display:none">
+        <li class="SubMenuItemBar">@Html.ActionLink("HES Training Records", "Index", "TrainingRecord")</li>
+        <li class="SubMenuItemBar">@Html.ActionLink("HES Training Courses", "Index", "TrainingCourse")</li>
+        <li class="SubMenuItemBar">@Html.ActionLink("HES Maintain People", "Index", "Employee")</li>
+        <li class="SubMenuItemBar">@Html.ActionLink("HES Maintain Company", "Index", "Company")</li>
+    </ul>
+    <ul id="menuUser" class="SubMenuBar" style="display:none">
+    <li class="SubMenuItemBar">@Html.ActionLink("HES Training Records", "Index", "TrainingRecord")</li>
+</ul>
+
+@*</header>*@

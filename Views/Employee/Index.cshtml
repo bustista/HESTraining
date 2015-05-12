@@ -1,0 +1,268 @@
+﻿@model HESTraining.Models.EmployeeViewModel
+@{
+    ViewBag.Title = "People";
+}
+
+
+<br /><br />
+
+<div class="frameset-border">
+    <div class="row">
+        <div class="col-md-1">
+            @Html.Label("Name")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().TextBoxFor(m => m.FirstNameEn))
+        </div>
+        <div class="col-md-1">
+            @Html.Label("Emp Code")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().TextBoxFor(m => m.EmpCode))
+        </div>
+        <div class="col-md-1">
+            @Html.Label("Citizen ID")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().TextBoxFor(m => m.CitizenID))
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-md-1">
+            @Html.Label("Company")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().DropDownListFor(m => m.Company)
+                    .OptionLabel("All")
+                    .Value("")
+                            .DataValueField("CompanyID")
+                    .DataTextField("CompanyName")
+                    .BindTo((System.Collections.IEnumerable)ViewBag.companies)
+            )
+        </div>
+        <div class="col-md-1">
+            @Html.Label("Department")
+        </div>
+        <div class="col-md-2">
+            @(Html.Kendo().DropDownListFor(m => m.DepartmentName)
+                    .OptionLabel("All")
+                    .Value("")
+                            .DataValueField("DepartmentName")
+                    .DataTextField("DepartmentName")
+                                 .Template("#:data.DepartmentCode#:#:data.DepartmentName#")
+                                .ValueTemplate("#:data.DepartmentCode#:#:data.DepartmentName#")
+                    .BindTo((System.Collections.IEnumerable)ViewBag.departments)
+            )
+        </div>
+
+    </div>
+    <div class="row top-buffer">
+        <div class="col-md-1">
+            @*<input type="text" ng-model="myInput" placeholder="type sa" />*@
+        </div>
+        <div class="col-md-3">
+            <button type="button" id="btnSearch" class="k-button">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"> Search</span>
+            </button>
+            <button type="button" id="btnNew" class="k-button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"> New</span>
+            </button>
+            <button type="button" id="btnUpload" class="k-button">
+                <span class="glyphicon glyphicon-upload" aria-hidden="true"> Upload</span>
+            </button>
+        </div>
+
+    </div>
+</div>
+@*<br />
+<h1>Your input is {{myInput}} </h1>
+<br />*@
+
+@{ 
+    if (Request["bind"] != null && Request["bind"].ToString().Equals("yes"))
+	{
+		 ViewBag.bind = true;
+	}
+    else
+    { 
+        ViewBag.bind = false;
+    }
+ }
+
+@(Html.Kendo().Grid<HESTraining.Models.EmployeeViewModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(165);
+        columns.Bound(e => e.EmpCode).Title("Emp Code").Width(90);
+        columns.ForeignKey(e => e.CompanyID, (IEnumerable<HESTraining.Models.CompanyViewModel>)ViewBag.companies, "CompanyID", "CompanyName").Title("Company").Visible(true).Width(100);
+        columns.Bound(e => e.TitleEn).Title("Title En").Width(70);
+        columns.Bound(e => e.FirstNameEn).Title("First Name En").Width(120);
+        columns.Bound(e => e.LastNameEn).Title("Last Name En").Width(120);
+        columns.Bound(e => e.TitleTh).Title("Title Th").Width(70);
+        columns.Bound(e => e.FirstNameTh).Title("First Name Th").Width(120);
+        columns.Bound(e => e.LastNameTh).Title("Last Name Th").Width(120);
+        columns.Bound(e => e.CitizenID).Title("Citizen ID").Width(120);
+        //columns.ForeignKey(e => e.DepartmentCode, (IEnumerable<HESTraining.Models.DepartmentViewModel>)ViewBag.departments, "DepartmentCode", "DepartmentName")
+        //    .ClientTemplate("#:DepartmentCode#:#:DepartmentName#")
+        //    .EditorTemplateName("GridForeignKey").Title("Dept Name Eng").Visible(true).Width(250);
+        columns.Bound(r => r.DepartmentCode)
+        .ClientTemplate("#:DepartmentCode#:#:DepartmentName#")
+        .Title("Dept Name En")
+        .Width(250).Visible(true);
+        //columns.ForeignKey(e => e.PositionID, (IEnumerable<HESTraining.Models.PositionViewModel>)ViewBag.positions, "PositionID", "PositionTitleEn").Title("Postion Name En").Visible(true).Width(200);
+        columns.Bound(e => e.PositionNameEn).Title("Position Name En").Width(200);
+        columns.Bound(e => e.PositionNameTh).Title("Position Name Th").Width(200).Visible(true);
+    })
+        //.ToolBar(toolbar => toolbar.Create().Text("New"))
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+        .Pageable(pager => { pager.PageSizes(true); })
+    .Sortable()
+        .Resizable(resize => resize.Columns(true))
+    .Scrollable()
+    .AutoBind((bool)ViewBag.bind)
+        .HtmlAttributes(new { style = "height:430px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(10)
+                            .Events(events => events.Error("error_handler").Sync("sync_handler"))
+            .Model(model => model.Id(e => e.EmployeeID))
+                .Create(update => update.Action("Create", "Employee"))
+                            .Read(read => read.Action("Read", "Employee"))
+                            .Update(update => update.Action("Update", "Employee"))
+                                    .Destroy(update => update.Action("Destroy", "Employee"))
+    )
+)
+@(Html.Kendo().Window()
+    .Name("popUploadEmployee")
+    .Title("Upload Employee")
+    .Draggable()
+    .Content(@<text>
+<div>
+    <a href="~/Content/Template/EmployeeUploadTemplate.xlsx">Download Template</a>
+    <form method="post" action='@Url.Action("Upload")' style="width:100%">
+        <div class="demo-section">
+            @(Html.Kendo().Upload()
+                .Name("files")
+                .Multiple(false)
+                                //.Events(e => e.Upload("CheckFileName"))
+            )
+
+            <p>
+                <input type="submit" value="Upload" class="k-button" />
+            </p>
+        </div>
+    </form>
+</div>
+<script>
+    function CheckFileName() {
+        var fileUpload = e.files // document.getElementById("files").value  $('#files').data('kendoUpload');
+        //debugger;
+        if (fileUpload == 0) {
+            alert("Browse to upload a valid File with xlsx extension");
+            return false;
+        }
+        else if (fileUpload.split(".")[1].toUpperCase() == "XLSX")
+            return true;
+        else {
+            alert("File with " + fileUpload.split(".")[1] + " is invalid. Upload a validfile with xlsx extensions");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+</text>)
+    .Resizable()
+    .Width(400)
+    .Height(200)
+    .Modal(true)
+    .Visible(false)
+)
+@(Html.Kendo().Window()
+    .Name("alertWindow")
+    .Title("Status Message from Server")
+    .Draggable()
+    .Resizable()
+    .Width(400)
+    .Height(200)
+    .Modal(true)
+    .Visible(false)
+)
+<script type="text/javascript">
+
+    $('#btnUpload').on('click', function () {
+        var popUpload = $('#popUploadEmployee').data('kendoWindow');
+        popUpload.refresh();
+        popUpload.center();
+        popUpload.open();
+
+    });
+    function onSuccess(e) {
+        showAlertWindow("Upload Complete");
+    }
+    $('#btnNew').on('click', function () {
+        $("#grid").data("kendoGrid").addRow();
+    });
+    $(function () {
+        $("#DepartmentName").data("kendoDropDownList").list.width(500);
+    });
+    function sync_handler(e) {
+        this.read();
+    }
+    function showAlertWindow(message) {
+        var alertWindow = $('#alertWindow').data('kendoWindow');
+        alertWindow.content(message);
+        alertWindow.refresh();
+        alertWindow.center();
+        alertWindow.open();
+    }
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            showAlertWindow(message);
+        }
+    }
+
+    $("#btnSearch").click(function () {
+        $filter = new Array();
+
+        $employee = $("#FirstNameEn").val();
+        $empCode = $("#EmpCode").val();
+        $citizen = $("#CitizenID").val();
+        $company = $("#Company").val();
+        $department = $("#DepartmentName").val();
+
+
+
+
+        if ($employee) {
+            $filter.push({ field: "FirstNameEn", operator: "contains", value: $employee });
+        }
+        if ($empCode) {
+            $filter.push({ field: "EmpCode", operator: "contains", value: $empCode });
+        }
+        if ($citizen) {
+            $filter.push({ field: "CitizenID", operator: "contains", value: $citizen });
+        }
+        if ($company) {
+            $filter.push({ field: "CompanyID", operator: "eq", value: $company });
+        }
+        if ($department) {
+            $filter.push({ field: "DepartmentName", operator: "eq", value: $department });
+        }
+
+
+        var grid = $("#grid").data("kendoGrid");
+
+        grid.dataSource.filter($filter);
+        grid.dataSource.read();
+    });
+</script>

@@ -1,0 +1,6 @@
+﻿@model HESTraining.Models.UserProfileViewModel
+
+@{
+    var fullname = Model.FirstNameEn + " " + Model.LastNameEn;
+    Response.Write(fullname.ToString());
+}

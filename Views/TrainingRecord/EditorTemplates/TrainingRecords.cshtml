@@ -1,0 +1,101 @@
+﻿@model HESTraining.Models.TrainingRecord
+
+
+<h3>edit template</h3>
+<br />
+@Html.HiddenFor(model => model.TrainingRecordID)
+
+<div>
+    @Html.LabelFor(model => model.EmployeeID)
+</div>
+<div>
+    @(Html.Kendo().DropDownList()
+            .Name("User")
+                .DataValueField("UserID")
+                .DataTextField("LoginName")
+                .BindTo((System.Collections.IEnumerable)ViewBag.employees))
+</div>
+<div>
+    @Html.LabelFor(model => model.TrainingCourse)
+</div>
+<div>
+    @(Html.Kendo().DropDownList()
+            .Name("Course")
+                .DataValueField("TrainingCourseID")
+                .DataTextField("CourseNameEn")
+                .BindTo((System.Collections.IEnumerable)ViewBag.courses))
+</div>
+
+<div>
+    @Html.LabelFor(model => model.Trainer)
+</div>
+<div>
+    @Html.EditorFor(model => model.Trainer)
+    @Html.ValidationMessageFor(model => model.Trainer)
+</div>
+<div>
+    @Html.LabelFor(model => model.Organized)
+</div>
+<div>
+    @Html.EditorFor(model => model.Organized)
+    @Html.ValidationMessageFor(model => model.Organized)
+</div>
+<div>
+    @Html.LabelFor(model => model.TrainingStartDate)
+</div>
+<div>
+    @Html.Kendo().DatePickerFor(model => model.TrainingStartDate)
+    @Html.ValidationMessageFor(model => model.TrainingStartDate)
+</div>
+<div>
+    @Html.LabelFor(model => model.TrainingEndDate)
+</div>
+<div>
+    @Html.EditorFor(model => model.TrainingEndDate)
+    @Html.ValidationMessageFor(model => model.TrainingEndDate)
+</div>
+<div>
+    @Html.LabelFor(model => model.Venue)
+</div>
+<div>
+    @Html.EditorFor(model => model.Venue)
+    @Html.ValidationMessageFor(model => model.Venue)
+</div>
+<div>
+    @Html.LabelFor(model => model.CertificateHESInduction)
+</div>
+<div>
+    @Html.EditorFor(model => model.CertificateHESInduction)
+    @Html.ValidationMessageFor(model => model.CertificateHESInduction)
+</div>
+@*<div>
+    @Html.LabelFor(model => model.ProjectID, "ProjectID")
+</div>
+<div>
+    @Html.DropDownList("ProjectID", null, htmlAttributes: new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.ProjectID)
+</div>*@
+<div>
+    @Html.LabelFor(model => model.FollowUpSSE)
+</div>
+<div>
+    @Html.EditorFor(model => model.FollowUpSSE)
+    @Html.ValidationMessageFor(model => model.FollowUpSSE)
+</div>
+<div>
+    @Html.LabelFor(model => model.MonthOfCompletionSSE)
+</div>
+<div>
+    @Html.EditorFor(model => model.MonthOfCompletionSSE)
+    @Html.ValidationMessageFor(model => model.MonthOfCompletionSSE)
+</div>
+<div>
+    @Html.LabelFor(model => model.YearOfCompletionSSE)
+</div>
+<div>
+    @Html.EditorFor(model => model.YearOfCompletionSSE)
+    @Html.ValidationMessageFor(model => model.YearOfCompletionSSE)
+</div>
+
+
+

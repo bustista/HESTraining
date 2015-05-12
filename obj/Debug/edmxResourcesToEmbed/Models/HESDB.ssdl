@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HES_TrainingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="CompanyStaffs">
+    <Key>
+      <PropertyRef Name="CompanyStaffID" />
+    </Key>
+    <Property Name="CompanyStaffID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateFrom" Type="datetime" Nullable="false" />
+    <Property Name="DateTo" Type="datetime" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="EmployeeID" Type="int" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="DepartmentCode" />
+    </Key>
+    <Property Name="DepartmentCode" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="LoginName" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="AuthenDomain" Type="bit" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="DomainName" Type="nvarchar(max)" />
+    <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+    <Property Name="TitleEn" Type="nvarchar(max)" />
+    <Property Name="FirstNameEn" Type="nvarchar(max)" />
+    <Property Name="MidNameEn" Type="nvarchar(max)" />
+    <Property Name="LastNameEn" Type="nvarchar(max)" />
+    <Property Name="TitleTh" Type="nvarchar(max)" />
+    <Property Name="FirstNameTh" Type="nvarchar(max)" />
+    <Property Name="MidNameTh" Type="nvarchar(max)" />
+    <Property Name="LastNameTh" Type="nvarchar(max)" />
+    <Property Name="CitizenID" Type="nvarchar(max)" />
+    <Property Name="DateFrom" Type="date" />
+    <Property Name="DateTo" Type="date" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="DepartmentCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="PositionID" Type="int" />
+    <Property Name="PositionNameEn" Type="varchar" MaxLength="200" />
+    <Property Name="PositionNameTh" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HES_Training.dbo.MenuItems' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MenuItems">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuName" Type="varchar" MaxLength="200" />
+    <Property Name="ParentMenuID" Type="int" />
+    <Property Name="Action" Type="varchar" MaxLength="50" />
+    <Property Name="Controller" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="int" />
+    <Property Name="MenuOrder" Type="int" />
+  </EntityType>
+  <EntityType Name="Positions">
+    <Key>
+      <PropertyRef Name="PositionID" />
+    </Key>
+    <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PositionTitleEn" Type="nvarchar(max)" />
+    <Property Name="PositionTitleTh" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TrainingCourses">
+    <Key>
+      <PropertyRef Name="TrainingCourseID" />
+    </Key>
+    <Property Name="TrainingCourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseNameEn" Type="nvarchar(max)" />
+    <Property Name="CourseNameTh" Type="nvarchar(max)" />
+    <Property Name="Duration" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="DurationUnit" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TrainingRecords">
+    <Key>
+      <PropertyRef Name="TrainingRecordID" />
+    </Key>
+    <Property Name="TrainingRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" />
+    <Property Name="TrainingCourseID" Type="int" />
+    <Property Name="Trainer" Type="nvarchar(max)" />
+    <Property Name="Organized" Type="nvarchar(max)" />
+    <Property Name="TrainingStartDate" Type="date" Nullable="false" />
+    <Property Name="TrainingEndDate" Type="date" Nullable="false" />
+    <Property Name="Venue" Type="nvarchar(max)" />
+    <Property Name="CertificateHESInduction" Type="nvarchar(max)" />
+    <Property Name="ProjectID" Type="int" />
+    <Property Name="FollowUpSSE" Type="nvarchar(max)" />
+    <Property Name="MonthOfCompletionSSE" Type="nvarchar(max)" />
+    <Property Name="YearOfCompletionSSE" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HES_Training.dbo.UserAccounts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UserAccounts">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="int" />
+  </EntityType>
+  <EntityType Name="UserInRoles">
+    <Key>
+      <PropertyRef Name="UserInRoleID" />
+    </Key>
+    <Property Name="UserInRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="UserID" Type="int" />
+  </EntityType>
+  <Association Name="FK_dbo_CompanyStaffs_dbo_Companies_CompanyID">
+    <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+    <End Role="CompanyStaffs" Type="Self.CompanyStaffs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="CompanyStaffs">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_CompanyStaffs_dbo_Employees_EmployeeID">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="CompanyStaffs" Type="Self.CompanyStaffs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="CompanyStaffs">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employees_dbo_Departments_DepartmentCode">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentCode" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="DepartmentCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employees_dbo_Positions_PositionID">
+    <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Positions">
+        <PropertyRef Name="PositionID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="PositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TrainingCourses_dbo_Categories_CategoryID">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="TrainingCourses" Type="Self.TrainingCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="TrainingCourses">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TrainingRecords_dbo_Employees_EmployeeID">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="TrainingRecords" Type="Self.TrainingRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="TrainingRecords">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TrainingRecords_dbo_Projects_ProjectID">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+    <End Role="TrainingRecords" Type="Self.TrainingRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="TrainingRecords">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TrainingRecords_dbo_TrainingCourses_TrainingCourseID">
+    <End Role="TrainingCourses" Type="Self.TrainingCourses" Multiplicity="0..1" />
+    <End Role="TrainingRecords" Type="Self.TrainingRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingCourses">
+        <PropertyRef Name="TrainingCourseID" />
+      </Principal>
+      <Dependent Role="TrainingRecords">
+        <PropertyRef Name="TrainingCourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Users_dbo_Companies_CompanyID">
+    <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAccounts_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="UserAccounts" Type="Self.UserAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="UserAccounts">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="UserInRoles" Type="Self.UserInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UserInRoles">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="spGetDepartmentById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DepartmentCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="HES_TrainingModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompanyStaffs" EntityType="Self.CompanyStaffs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainingCourses" EntityType="Self.TrainingCourses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainingRecords" EntityType="Self.TrainingRecords" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserInRoles" EntityType="Self.UserInRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuItems" EntityType="Self.MenuItems" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MenuItems].[MenuID] AS [MenuID], 
+    [MenuItems].[MenuName] AS [MenuName], 
+    [MenuItems].[ParentMenuID] AS [ParentMenuID], 
+    [MenuItems].[Action] AS [Action], 
+    [MenuItems].[Controller] AS [Controller], 
+    [MenuItems].[IsActive] AS [IsActive], 
+    [MenuItems].[MenuOrder] AS [MenuOrder]
+    FROM [dbo].[MenuItems] AS [MenuItems]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UserAccounts].[UserID] AS [UserID], 
+    [UserAccounts].[EmployeeID] AS [EmployeeID], 
+    [UserAccounts].[UserName] AS [UserName], 
+    [UserAccounts].[Password] AS [Password], 
+    [UserAccounts].[IsActive] AS [IsActive]
+    FROM [dbo].[UserAccounts] AS [UserAccounts]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_dbo_CompanyStaffs_dbo_Companies_CompanyID" Association="Self.FK_dbo_CompanyStaffs_dbo_Companies_CompanyID">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="CompanyStaffs" EntitySet="CompanyStaffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_CompanyStaffs_dbo_Employees_EmployeeID" Association="Self.FK_dbo_CompanyStaffs_dbo_Employees_EmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="CompanyStaffs" EntitySet="CompanyStaffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employees_dbo_Departments_DepartmentCode" Association="Self.FK_dbo_Employees_dbo_Departments_DepartmentCode">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employees_dbo_Positions_PositionID" Association="Self.FK_dbo_Employees_dbo_Positions_PositionID">
+      <End Role="Positions" EntitySet="Positions" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TrainingCourses_dbo_Categories_CategoryID" Association="Self.FK_dbo_TrainingCourses_dbo_Categories_CategoryID">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="TrainingCourses" EntitySet="TrainingCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TrainingRecords_dbo_Employees_EmployeeID" Association="Self.FK_dbo_TrainingRecords_dbo_Employees_EmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="TrainingRecords" EntitySet="TrainingRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TrainingRecords_dbo_Projects_ProjectID" Association="Self.FK_dbo_TrainingRecords_dbo_Projects_ProjectID">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="TrainingRecords" EntitySet="TrainingRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TrainingRecords_dbo_TrainingCourses_TrainingCourseID" Association="Self.FK_dbo_TrainingRecords_dbo_TrainingCourses_TrainingCourseID">
+      <End Role="TrainingCourses" EntitySet="TrainingCourses" />
+      <End Role="TrainingRecords" EntitySet="TrainingRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Users_dbo_Companies_CompanyID" Association="Self.FK_dbo_Users_dbo_Companies_CompanyID">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAccounts_Employees" Association="Self.FK_UserAccounts_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInRoles_Roles" Association="Self.FK_UserInRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserInRoles" EntitySet="UserInRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
